@@ -1,0 +1,79 @@
+            <div class="col-md-6 col-sm-6 tira-padding">
+                <p><strong>... Ou cadastre um novo produtor</strong></p>
+                <div class="input-group margin-bottom-sm" style="width: 400px;">
+                    <span class="input-group-addon"><i class="fa-green fa fa-smile-o fa-fw"></i></span>
+                    <input required class="alfa form-control" type="text" type="text" name="nNome" id="iNome" maxlength="30" placeholder="Nome">
+                </div>
+
+                <div class="input-group margin-bottom-sm" style="width: 400px;">
+                    <span class="input-group-addon"><i class="fa-green fa fa-shield fa-fw"></i></span>
+                    <input required class="alfa form-control" type="text" type="text" name="nFazenda" id="iFazenda" maxlength="45" placeholder="Fazenda">
+                </div>
+
+                <div class="input-group margin-bottom-sm" style="width: 400px;">
+                    <span class="input-group-addon"><i class="fa-green fa fa-home fa-fw"></i></span>
+                    <input required class="alfa form-control" type="text" type="text" name="nLogradouro" id="iLogradouro" maxlength="40" placeholder="Rua, Avenida, nº da residência...">
+                </div>
+
+                <div class="input-group margin-bottom-sm" style="width: 400px;">
+                    <span class="input-group-addon"><i class="fa-green fa fa-street-view fa-fw"></i></span>
+                    <input required class="alfa form-control" type="text" type="text" name="nBairro" id="iBairro" maxlength="30" placeholder="Bairro">
+                </div>
+
+                <div class="input-group margin-bottom-sm" style="width: 400px;">
+                    <span class="input-group-addon"><i class="fa-green fa fa-map-signs fa-fw"></i></span>
+                    <select class="alfa form-control" name = "nArea" size =1>
+                        <option selected="" value="">Selecione uma área:</option>
+                        <option value="Urbana">Urbana</option>
+                        <option value="Rural">Rural</option>
+                    </select>
+                </div>
+                <div class="input-group margin-bottom-sm" style="width: 400px;">
+                    <span class="input-group-addon"><i class="fa-green fa fa-map-marker fa-fw"></i></span>
+                    <input required class="alfa form-control" type="text" type="text" name="nCidade" id="iCidade" maxlength="30" placeholder="Cidade">
+                </div>
+
+                <div class="input-group margin-bottom-sm" style="width: 400px;">
+                    <span class="input-group-addon"><i class="fa-green fa fa-phone fa-fw"></i></span>
+                    <input required class="cTelefone alfa form-control" type="text" type="text" name="nTelefone" maxlength="8" placeholder="Telefone">
+                </div>
+
+                <div class="input-group margin-bottom-sm" style="width: 400px;">
+                    <span class="input-group-addon"><i class="fa-green fa fa-phone-square fa-fw"></i></span>
+                    <input required class="cCelular alfa form-control" type="text" type="text" name="nCelular" maxlength="8" placeholder="Celular">
+                </div>
+            </div><!-- da col -->
+        </div><!-- da row da col -->
+        <br>
+        <div class="row text-center">
+            <button type="submit" id="iTypeButton" class="btn btn-success">Cadastrar</button>
+        </div>
+        <br>
+        <br>
+    </div><!-- do panel-body -->
+<script>
+    $(document).ready(function(){
+        $("#iIdProdutor").change(function(){
+            if($(this).val()){
+                $('.alfa').prop('value','');
+                $('.alfa').attr('disabled', true);
+                $('.alfa').prop('required',false);
+            }else{
+                $('.alfa').prop('required',true);
+                $('.alfa').attr('disabled', false);
+            }
+        });
+        $('#iLimpar').on('click', function(){
+            $('input[name="nPH"]').attr('value','');
+            $('input[name="nFosforo"]').attr('value','');
+            $('input[name="nPotassio"]').attr('value','');
+            $('input[name="nCalcio"]').attr('value','');
+            $('input[name="nMagnesio"]').attr('value','');
+            $('input[name="nAluminio"]').attr('value','');
+            $('input[name="nHAl"]').attr('value','');
+            $('input[name="nSB"]').attr('value','');
+            $('input[name="nMO"]').attr('value','');
+            $('input[name="nPrem"]').attr('value','');
+        });
+    });
+</script>

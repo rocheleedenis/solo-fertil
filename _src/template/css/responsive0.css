@@ -1,0 +1,121 @@
+@charset "utf-8";
+
+body, html, section{
+	width: 100%;
+}
+/* ---------------- BARRA SUPERIOR ----------------- */
+ul.listaNav{
+	margin-right: 20px; 
+}
+div.wrap{
+	display: block;
+	float: right;
+	margin-top: 10px;
+}
+/* --------------- CORPO -------------------*/
+section div.row{
+	margin: 0 5% auto !important; 
+	padding: 0 !important;
+}
+section .imagem{
+	float: left;
+	width: 50%;
+}
+.imagem img{
+	border-radius: 10px;
+	width: 80%;
+	margin: auto;
+}
+section .form-cadastro{
+	float: right;
+	width: 50%;
+}
+form#iFormulario div.input-group{
+	margin: 0 auto !important;
+	width: 80%;
+}
+.input-group input{
+	/*max-width: 350px;*/
+	min-width: 200px;
+}
+
+@media only screen and (max-width: 1000px) {
+	nav hgroup{
+		display: none;
+	}
+}
+
+/*Media Queries*/
+@media only screen and (max-width: 780px) {
+	nav.nav{
+		width: 350px !important;
+		background-color: #6bb03d;
+		border-radius: 0 !important;
+	}
+	div.imagem{
+		display: none;
+	}
+	section .form-cadastro{
+		display: block;
+		float: left;
+		width: 100%;
+		margin: auto;
+	}
+	div.drop{
+		height: 54px;
+	}
+	div.wrap {
+		width: 100%;
+		margin: 0;
+		margin-top: 0; 
+	}
+	.nav {
+		width: 200px;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	#div-master a img{
+		display: none;
+	}
+	.nav-toggle {
+		position: absolute;
+		top: 0;
+		right: -56px;
+		cursor: pointer;
+		width: 44px;
+		height: 24px;
+		z-index: 1000;
+		display: block;
+		padding: 12px 6px 6px 6px;
+	}
+	div.nav-toggle button{
+		padding: 5px;
+		background-color: green;
+		border: 1px solid (0, 0, 0, 0.7);
+		border-style: none;
+		border-radius: 3px;
+		margin-top: 0;
+/*		margin-left: 110px;*/
+	}
+	div.nav-toggle button span{
+		padding: 1px 12px;
+		font-size: 1px;
+		margin: 4px;
+		background-color: #ddd;
+		white-space: nowrap;
+		display: block;
+		border-radius: 3px;
+	}
+	div.nav-toggle button:hover{
+		background-color: #8BD35C !important;
+	}
+	.input-group{
+		margin-bottom: 20px;
+	}
+	.input-group input{
+		display: block;
+		min-width: 250px;
+	}
+
+}

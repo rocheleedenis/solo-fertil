@@ -1,0 +1,222 @@
+@charset "utf-8";
+
+html, body{
+	height: 100%;
+}
+body{
+	margin: 0;
+    background: rgba(136, 255, 55, 0.2) !important;
+}
+
+div.no-margin{
+	padding-left: 0 !important;
+	padding-right: 0 !important; 
+}
+.contend{
+    min-height: 100%;
+}
+
+.row{
+	margin-left: 8% !important;
+	margin-right: 8% !important;
+}
+/* ---------------- MENU ----------------*/
+div.drop{
+	width: 100%;
+	height: 70px;
+	background-color: #6BB03D !important;
+	border-radius: 0 0 8px 8px;
+}
+nav{
+	width: 100%;
+	margin: 0 !important;
+	border: 0 !important;
+	border-radius: 0 0 15px 15px !important;
+}
+nav div.cont-nav{
+	/*margin: auto;*/
+	display: block;
+}
+nav a{
+	display: block;
+	text-decoration: none !important;
+	float: left;
+}
+nav a img{
+	height: 65px;
+	margin: 0;
+	padding: 0 10px;
+	float: left;
+}
+nav hgroup{
+	float: right;
+	display: block;
+}
+nav a hgroup h1 {
+	font-size: 20pt;
+	padding: 10px 0 0 0;
+	color: rgba(0,0,0,0.7);
+	font-weight: bold;
+	margin: 0;
+}
+nav hgroup h2 {
+	font-size: 8pt;
+	padding: 0;
+	color: rgba(0,0,0,0.7);
+	margin: 0;
+	font-weight: bold;
+	text-shadow: 1px;
+}
+
+/* ------------- MENU COMPLETO --------------*/
+div.wrap{
+	float: right;
+}
+ul.listaNav{
+	height: 70px;
+	padding: 0;
+}
+ul.listaNav li {
+ 	display: inline-block;
+ 	margin: 0;
+ 	padding: 25px 10px;
+}
+ul.listaNav li:hover,
+ul.listaNav li:focus{
+	background-color: #8BD35C;
+}
+ul.listaNav li a{
+	font-size: 14px;
+	color: rgba(0,0,0,0.7);
+	font-weight: bolder;
+	text-decoration: none;
+}
+.active, .activeD, 
+.active a, .activeD a{
+	background-color: #8BD35C !important;
+}
+.active, .activeD, 
+.active a, .activeD a,
+.listaNav li:hover a,
+.listaNav li:focus a{
+	color: white !important;
+}
+.nav .open > a:focus{
+	background-color: #6BB03D !important;
+}
+.nav .open > a:hover{
+	background-color: #8BD35C !important;
+}
+/*------------ SUBMENU --------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  */
+ul.dropdown-menu{
+	overflow: auto;
+	height: 200px;
+}
+ul.dropdown-menu, 
+ul.dropdown-menu li,
+ul.dropdown-menu li a{
+	background-color: #6BB03D !important;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+ul.dropdown-menu li{
+	padding-top: 10px;
+	height: 30px;
+	width: 100%;
+}
+ul.dropdown-menu li a{
+	background-color: #6BB03D !important;
+	width: 100%;
+	padding: 5px 20px;
+}
+ul.dropdown-menu:hover{
+	background-color: #6BB03D !important;
+}
+ul.dropdown-menu li:hover a,
+ul.dropdown-menu li:focus a{
+	background-color: #8BD35C !important;
+}
+/* ---------- CONTEUDO ------------*/
+section#conteudo{
+	padding-top: 70px;
+	height: 100%;
+}
+h2{
+    color: saddlebrown;
+}
+
+h1, h2, h3, h4{
+    text-align: center;
+}
+h3.subtitulo{
+	text-decoration: underline;
+	text-align: left;
+	padding: 10px;
+	margin-top: 0;
+	padding-left: 0;
+}
+b.decorar{
+    text-decoration: underline;
+}
+div.jumbotron{
+    background-color: rgba(40, 255, 17, 0.1) !important;
+}
+div.jumbotron p {
+    font-size: 18px !important;
+}
+div.panel-body{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+div.container{
+	height: 100%;
+}
+div.panel{
+	/*height: 100vmin !important;*/
+	min-height: 90%;
+	/*margin-bottom: 0 !important;*/
+}
+footer{
+	height: 45px !important;
+}
+div.well{
+    background-color: #5c9834 !important;
+    color: wheat !important;
+    margin-bottom: 0 !important;
+    text-align: center !important;
+    border: 0 !important;
+    padding-top: 15 !important;
+}
+div.voltar{
+	font-size: 12px;
+	margin-top: 10px !important;
+	color: #1aa3ff !important;
+}
+div.alert{
+	margin-top: 13%;
+}
+div.chata{
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+div.chata div{
+	padding-right: 0 !important;
+	padding-left: 0 !important;
+}
+div.observacoes-tabela{
+	font-size: 12px;
+	text-align: justify;
+}
+.tira-padding{
+	padding-right: 0 !important;
+	padding-left: 0 !important;
+}
+.fa-green{
+	color: green;
+}
+input.invisivel{
+	background-color: transparent;
+	border: none;
+}
+

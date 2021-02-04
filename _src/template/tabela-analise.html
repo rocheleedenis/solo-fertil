@@ -1,0 +1,49 @@
+<table class="table table-bordered table-responsive">
+    <thead class="text-center">
+    	<tr>
+        	<th>pH</th>
+        	<th>P</th>
+        	<th>K</th>
+        	<th>Ca<sup>2+</sup></th>
+        	<th>Mg<sup>2+</sup></th>
+        	<th>Al<sup>3+</sup></th>
+        	<th>H+Al</th>
+        	<th>SB</th>
+        	<th>(t)</th>
+        	<th>(T)</th>
+        	<th>V</th>
+        	<th>m</th>
+            <th>Arg</th>
+        	<th>MO</th>
+            <th>P-rem</th>
+      	</tr>
+	</thead>
+	<tbody class="text-center">
+    	<tr>
+        	<td>H<sub>2</sub>O</td>
+        	<td colspan="2">mg/dm<sup>3</sup></td>
+        	<td colspan="7">cmol<sub>c</sub>/dm<sup>3</sup></td>
+        	<td colspan="3">%</td>
+        	<td>dag/Kg</td>
+        	<td>mg/L</td>
+      	</tr>
+    	<tr id="sub-titulo">
+        	<td><input class="cNumber" required name="nPH" id="iPH"/></td>
+        	<td><input class="cNumber" required id="iFosforo" name="nFosforo"/></td>
+        	<td><input class="cNumber" required id="iPotassio" name="nPotassio"/></td>
+        	<td><input class="cNumber" required id="iCalcio" name="nCalcio"/></td>
+        	<td><input class="cNumber" required id="iMagnesio" name="nMagnesio"/></td>
+        	<td><input class="cNumber" required id="iAluminio" name="nAluminio"/></td>
+        	<td><input class="cNumber" required id="iHAl" name="nHAl"/></td>
+        	<td><input class="cNumber" required id="iSB" name="nSB"/></td>
+        	<td><input class="cNumber" id="iCtcEfetiva" name="nCtcEfetiva" readonly/></td>
+        	<td><input class="cNumber" id="iCtcPH7" name="nCtcPH7" readonly/></td>
+        	<td><input class="cNumber" id="iV" name="nV" readonly/></td>
+            <td><input class="cNumber" id="iIndiceM" name="nIndiceM" readonly/></td>
+        	<td><input class="cNumber" id="iArgila" name="nArgila" /></td>
+        	<td><input class="cNumber" required id="iMO" name="nMO"/></td>
+        	<td><input class="cNumber" id="iPrem" name="nPrem"/></td>
+      	</tr>
+	</tbody>
+    <i><small>Todos os campos são obrigatórios. Caso sua análise não venha com o valor da argila ou fósforo remanescente preencha estes campos com o valor 0.</small></i>
+</table>

@@ -1,0 +1,42 @@
+<div class="row">
+	<div class="imagem">
+		<h2>Uma frase feliz!</h2>
+		<img class="img-responsive" src="../template/img/fundo.jpg">
+	</div>
+	<div class="form-cadastro text-center">
+		<!-- FORMULARIO -->
+		<form id="iFormulario" method="POST" action="../controllers/AppController.php?a=NQ==">
+			<h1>Criar uma conta</h1>
+			<div class="input-group margin-bottom-sm">
+				<span class="input-group-addon"><i class="fa-green fa fa-id-badge fa-fw"></i> | Nome</span>
+				<input class="form-control" required type="text" name="nNome" id="iNome" maxlength="45" placeholder="Somente letras">
+			</div>
+			<br />
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa-green fa fa-at fa-fw"></i> | E-mail</span>
+				<input class="form-control" required type="email" name="nEmail" id="iemail" maxlength="45" placeholder="exemplo@email.com">
+			</div>
+			<br />
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa-green fa fa-unlock-alt fa-fw"></i> | Senha</span>
+				<input class="form-control" required type="password" name="nSenha" id="iSenhaC" minlength="6" maxlength="10" placeholder="6 a 10 caracteres">
+			</div>
+			<br />
+			<div class="row text-center">
+         		<button class="btn btn-success btn-lg" id="iCadastrar" type="submit">Criar conta</button>
+			</div>
+		</form>
+	</div>
+</div>
+<script>
+	$(document).ready(function(){
+		$('#iCadastrar').attr('disabled', true);
+		$('#iSenhaC').keyup(function(){
+			if($(this).val().length < 6 || $('#iSenhaC').val().length > 10){
+				$('#iCadastrar').prop('disabled', true);
+			}else{
+				$('#iCadastrar').attr('disabled', false);
+			}
+		});
+	});
+</script>

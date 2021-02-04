@@ -1,0 +1,78 @@
+@charset "utf-8";
+@media only screen and (max-width: 1200px) {
+	nav hgroup{
+		display: none;
+	}
+}
+
+/*Media Queries*/
+@media only screen and (max-width: 1170px) {
+	div.drop{
+		height: 54px;
+	}
+	div.wrap {
+		width: 100%;
+		margin: 0;
+		margin-top: 0; 
+	}
+	div.wrap ul li{
+		display: block;
+		height: 50px;
+		padding: 15px;
+		background-color: #6BB03D;
+		border-bottom: 1px solid #ddd;
+	}
+	div.wrap ul li:focus,
+	div.wrap ul li:hover{
+		background-color: #8BD35C;
+		color: white;
+	}
+	div.wrap ul li:focus a,
+	div.wrap ul li:hover a{
+		color: white;
+	}
+	.nav {
+		width: 200px;
+		position: absolute;
+		top: 0;
+		left: 0;
+	   }
+	#div-master a img{
+		display: none;
+	}
+	div.wrap ul.listaNav{
+		padding: 5px 0 ;
+		margin: 0;
+	}
+	.nav-toggle {
+		position: absolute;
+		top: 0;
+		right: -56px;
+		cursor: pointer;
+		width: 44px;
+		height: 24px;
+		z-index: 1000;
+		display: block;
+		padding: 12px 6px 6px 6px;
+	}
+	div.nav-toggle button{
+		padding: 5px;
+		background-color: green;
+		border: 1px solid (0, 0, 0, 0.7);
+		border-style: none;
+		border-radius: 3px;
+		margin-top: 0;
+	}
+	div.nav-toggle button span{
+		padding: 1px 12px;
+		font-size: 1px;
+		margin: 4px;
+		background-color: #ddd;
+		white-space: nowrap;
+		display: block;
+		border-radius: 3px;
+	}
+	div.nav-toggle button:hover{
+		background-color: #8BD35C !important;
+	}
+}

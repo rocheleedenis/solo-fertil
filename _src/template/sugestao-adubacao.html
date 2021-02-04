@@ -1,0 +1,197 @@
+<hr>
+<div class="row">
+	<div class="col-md-6"> 
+		<p>Simular compra do fertilizante?</p>
+		<div class="radio">
+			<label><input type="radio" name="nSimular" value="1">Sim</label>
+		</div>
+		<div class="radio">
+			<label><input checked type="radio" name="nSimular" value="0">Não</label>
+		</div>
+	</div>
+	<div id="iFormaAdubacao" style="display: none;">
+		<div class="col-md-6">
+			<p>Escolha o tipo de fertilizante que você deseja:</p>
+			<div class="radio">
+				<label><input autofocus type="radio" name="nFertilizante" value="s">Simples</label>
+			</div>
+			<div class="radio">
+				<label><input type="radio" name="nFertilizante" value="m">Misto</label>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="iSimples" style="display: none;">
+	<hr>
+	<div class="row">
+		<label>Tipos de fertilizante simples:</label><br />
+		
+		<label>Fertilizante N:</label><br />
+		<div class="row chata">	
+			<div class="col-md-6">
+				<div class="radio">
+					<label><input type="radio" name="nNitrogenio" value="u">Ureia</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" name="nNitrogenio" value="s">Sulfato de amônia</label>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="input-group margin-bottom-sm" ">
+			        <span class="input-group-addon">Quantidade de adubo final: </span>
+			        <input readonly class="form-control" required type="text" name="nNitrokg" id="iNitrokg" value="" maxlength="30" />
+			    </div>
+			</div>
+		</div>
+		<br>
+		<label>Fertilizante P<sub>2</sub>O<sub>5</sub>:</label>
+		<div class="row chata">
+			<div class="col-md-6">
+		    	<div class="radio">
+					<label><input type="radio" name="nP2O5" value="s">Superfosfato simples</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" name="nP2O5" value="t">Superfosfato triplo</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" name="nP2O5" value="n">Fosfato natural</label>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="input-group margin-bottom-sm" ">
+			        <span class="input-group-addon">Quantidade de adubo final: </span>
+			        <input readonly class="form-control" required type="text" name="nP2O5kg" id="iP2O5kg" value="" maxlength="30" />
+			    </div>
+			</div>
+		</div>
+		<br>
+		<label>Fertilizante K<sub>2</sub>O:</label>
+		<div class="row chata">
+			<div class="col-md-6">
+		    	<div class="radio">
+					<label><input checked type="radio" name="nK2O">Cloreto de potássio</label>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="input-group margin-bottom-sm" ">
+			        <span class="input-group-addon">Quantidade de adubo final: </span>
+			        <input readonly class="form-control" required type="text" name="nK2Okg" id="iK2Okg" value="" maxlength="30" />
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="iMisto" style="display: none;">
+	<hr>
+	<div class="row">
+		<label>Escolha a formula pronta que melhor se encaixa para a situação:</label>
+
+		<div class="row chata">
+			<div class="col-md-6">
+				<div class="radio">
+					<label><input type="radio" name="nFormulacao" value="04:14:08">04:14:08</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" name="nFormulacao" value="10:10:10">10:10:10</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" name="nFormulacao" value="20:05:20">20:05:20</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" name="nFormulacao" value="08:28:16">08:28:16</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" name="nFormulacao" value="04:30:16">04:30:16</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" name="nFormulacao" value="06:30:06">06:30:06</label>
+				</div>
+				<input type="hidden" id="iFormula" value="">
+			</div>
+			<div class="col-md-6">
+				<div class="input-group margin-bottom-sm" ">
+			        <span class="input-group-addon">Quantidade de adubo final: </span>
+			        <input readonly class="form-control" required type="text" name="nMisturakg" id="iMisturakg" value="" maxlength="30" />
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function(){
+	    $("input[name=nSimular]").on('click', function() {
+			var simulacao = $("input[name=nSimular]:checked").val();
+			if (simulacao==1){ $("#iFormaAdubacao").show(); }
+			else if (simulacao==0){	$("#iFormaAdubacao").hide(); }
+		});
+
+		$("input[name=nFertilizante]").on('click', function() {
+			var festilizante = $("input[name=nFertilizante]:checked").val();
+			if (festilizante=='s'){ 
+				$("#iMisto").hide();
+				$("#iSimples").show();
+				// K2O
+				var value = $('#iK2O').val();
+				value = parseInt(value);
+			    value = Math.round((100 * value)/58);
+				value += ' kg/ha'
+			    $("#iK2Okg").val(value);
+			} else if (festilizante=='m'){
+				$("#iMisto").show();
+				$("#iSimples").hide();
+			}
+		});
+
+		// MISTOS
+	    $("input[name=nFormulacao]").on("click", function(){
+	        var tipo = $("input[name=nFormulacao]:checked").val();
+	        var p2o5 = $('#iP2O5').val();
+	        p2o5 = parseInt(p2o5);
+	        var x = 0;
+	        if (tipo == '04:14:08') { x = 14; }
+	        else if (tipo == '10:10:10') { x = 10; }
+	        else if (tipo == '20:05:20') { x = 5; }
+	        else if (tipo == '08:28:16') { x = 28; }
+	        else if (tipo == '04:30:16') { x = 30; }
+	        else if (tipo == '06:30:06') { x = 30; }
+
+	        p2o5 = Math.round((p2o5/x)*100);
+	        p2o5 += ' kg/ha';
+	        $('#iMisturakg').val(p2o5);
+	        $('#iFormula').val(tipo);
+	    });
+
+		// ADUBOS SIMPLES
+		// nitrogenio
+		$("input[name=nNitrogenio]").on('click', function() {
+			var tipo = $("input[name=nNitrogenio]:checked").val();
+			var value = $('#iNitrogenio').val();
+			value = parseInt(value);
+			var x = 0;
+			if (tipo=='u'){ x = 44; } 
+			else if (tipo=='s'){ x = 20; }
+		    
+		    value = Math.round((100 * value)/x);
+		    value += ' kg/ha'; 
+		    $("#iNitrokg").val(value);
+		});
+
+		// P2O5
+		$("input[name=nP2O5]").on('click', function() {
+			var tipo = $("input[name=nP2O5]:checked").val();
+			var value = $('#iP2O5').val();
+			value = parseInt(value);
+			var x = 0;
+			if (tipo=='s'){ x = 18; }
+			else if (tipo=='t'){ x = 41; }
+			else if (tipo=='n'){ x = 24; }
+
+			value = Math.round((100 * value)/x);
+			value += ' kg/ha'
+		    $("#iP2O5kg").val(value);
+		});
+	});
+</script>

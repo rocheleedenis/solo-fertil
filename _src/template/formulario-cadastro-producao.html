@@ -1,0 +1,69 @@
+        <div class="input-group margin-bottom-sm" style="width:400px;">
+            <span class="input-group-addon"><i class="fa"></i>Data da colheita</span>
+            <input id="datepicker1" class="form-control" required type="text" name="nData" maxlength="10" placeholder="Dia/Mês/Ano">
+        </div><br />
+        <div class="input-group margin-bottom-sm" style="width:400px;">
+            <span class="input-group-addon"><i class="fa"></i>Área plantada</span>
+            <input class="cInteiro form-control" required type="number" name="nAreaPlantada" maxlength="10">
+        </div>
+        <div class="input-group margin-bottom-sm" style="width:400px;">
+            <span class="input-group-addon"><i class="fa"></i>Unidade</span>
+            <select required class="form-control" name="nUnidadeArea" size=1>
+                <option selected="" value="">--</option>
+                <option value="m²">m²</option>
+                <option value="ha">ha</option>
+            </select>
+        </div><br />
+        <div class="input-group margin-bottom-sm" style="width:400px;">
+            <span class="input-group-addon"><i class="fa"></i>Produção</span>
+            <input class="cInteiro form-control" required type="number" name="nProducao" maxlength="10">
+        </div>
+        <div class="input-group margin-bottom-sm" style="width:400px;" >
+            <span class="input-group-addon"><i class="fa"></i>Unidade</span>
+            <select required class="form-control" name="nUnidade" size=1>
+                <option selected="" value=""> -- </option>
+                <option value="kg"> kg </option>
+                <option value="dz"> dz </option>
+                <option value="un"> un </option>
+                <option value="saco"> saco </option>
+            </select>
+        </div><br />
+
+        <div class="input-group margin-bottom-sm" style="width:400px;">
+            <span class="input-group-addon"><i class="fa"></i>Preço de venda</span>
+            <input class="cPreco form-control" type="text" name="nPvenda" maxlength="10" placeholder="R$ --">
+        </div>
+        <div class="input-group margin-bottom-sm" style="width:400px;">
+            <span class="input-group-addon"><i class="fa"></i>Quantidade vendida</span>
+            <input class="cInteiro form-control" type="number" name="nQtdVendida" maxlength="10">
+        </div><br />
+    </div>
+
+    <div class='col-md-6 col-lg-6 col-sm-6'>
+        <h3 class="subtitulo">Gastos com fertilização</h3>
+        <div class="input-group margin-bottom-sm" style="width:400px;">
+            <span class="input-group-addon"><i class="fa"></i>Gastos com adubação N-P-K</span>
+            <input class="cPreco form-control" required type="text" name="nGastosNPK" maxlength="10" placeholder="R$ --">
+        </div><br />
+
+        <div class="input-group margin-bottom-sm" style="width:400px;">
+            <span class="input-group-addon"><i class="fa"></i>Quantidade de calcário</span>
+            <input class="cInteiro form-control" required type="number" name="nQtdCalcario" maxlength="10" placeholder="Em kg">
+        </div>
+        <div class="input-group margin-bottom-sm" style="width:400px;">
+            <span class="input-group-addon"><i class="fa"></i>Preço</span>
+            <input class="cPreco form-control" required type="text" name="nPcalcario" maxlength="10" placeholder="R$ --">
+        </div><br />
+
+        <div class="input-group margin-bottom-sm" style="width:400px;">
+            <span class="input-group-addon"><i class="fa"></i>Quantidade de adubo orgânico</span>
+            <input class="cInteiro form-control" required type="number" name="nQtdAdubo" maxlength="10" placeholder="Em kg">
+        </div>
+        <div class="input-group margin-bottom-sm" style="width:400px;">
+            <span class="input-group-addon"><i class="fa"></i>Preço</span>
+            <input class="cPreco form-control" required type="text" name="nPadubo" maxlength="10" placeholder="R$ --">
+        </div><br />
+    </div>
+</div>
+<link rel="stylesheet" href="../template/css/calendario.css">
+<script src="../template/js/jquery.zebra-datepicker.js"></script>
