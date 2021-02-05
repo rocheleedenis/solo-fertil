@@ -4,4 +4,15 @@ Projeto desenvolvido como parte do meu [TCC (Trabalho de Conclusão de Curso)](h
 
 Recomende adubos e corretivos e realize sugestão de sucessão de culturas considerando as necessidades de nutrientes apresentadas pelas culturas e as condições de solo que podem ser obtidas através de uma análise de solo.
 
-O sistema construído realiza a interpretação de análise, gerando uma classificação de cada um de seus elementos e também realiza o cálculo da calagem, com a finalidade de prover a sugestão de correção de solo para regularizar seus níveis de acidez. A metodologia de pesquisa empregada na construção deste trabalho se caracteriza por ser uma pesquisa-ação.
+O sistema construído realiza a interpretação de análise, gerando uma classificação de cada um de seus elementos e também realiza o cálculo da calagem, com a finalidade de prover a sugestão de correção de solo para regularizar seus níveis de acidez.
+
+## Requisitos
+
+- PHP 7.1 ou 7.2
+- MariaDB versão 10.1.22 ou superior
+
+## Instalação
+
+- Crie um banco de dados vazio.
+- Dentro da pasta _config existe o arquivo soloFertil.sql. Execute-o em para gerar as tabelas do sistema.
+- Ainda dentro desta pasta você encontrará o arquivo db.ini. Altere as credenciais do banco de dados de acordo com o seu ambiente.
