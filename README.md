@@ -8,7 +8,7 @@ O sistema construído realiza a interpretação de análise, gerando uma classif
 
 ## Requisitos
 
-- PHP 7.1
+- PHP 5.6
 - MariaDB versão 10.1.22 ou superior
 
 ## Instalação
