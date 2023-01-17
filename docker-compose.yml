@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  solo-fertil:
+    build:
+      context: app
+    container_name: solo-fertil
+    networks:
+      - solo-fertil-network
+    tty: true
+    volumes:
+      - ./app:/var/www/html
+    ports:
+      - "80:80"
+      - "443:443"
+
+  mysql:
+    image: mysql:5.7
+    command: --innodb-use-native-aio=0
+    container_name: mysql-solo-fertil
+    restart: always
+    tty: true
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=solo-fertil
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
+    networks:
+      - solo-fertil-network
+
+networks:
+  solo-fertil-network:
+    driver: bridge
