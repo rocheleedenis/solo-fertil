@@ -1,18 +1,47 @@
 <?php
-    
-class Connection{
-	public static function connect(){
-		$iniData = parse_ini_file('../../_config/db.ini');
+
+class Connection
+{
+	const DATABASE_CONFIG_PATH = '../../_config/db.ini';
+
+	/**
+	 * @return PDO
+	 */
+	public static function connect()
+	{
+		$connection = self::createConnection();
+
+		$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+        $connection->exec('SET NAMES utf8');
+
+		return $connection;
+	}
+
+	/**
+	 * @return PDO
+	 */
+	private static function createConnection()
+	{
+		$config = self::getConfig();
+
 		try {
-			$pdo = new PDO($iniData['driver'].':host='.$iniData['host'].';dbname='.$iniData['database'], $iniData['username'], $iniData['password']);
+			return new PDO(
+				"{$config['driver']}:host={$config['host']};dbname={$config['database']}",
+				$config['username'],
+				$config['password']
+			);
 		} catch (PDOException $e) {
-			echo "Erro na conexão com o banco. ".$e;
+			throw new \Exception("Erro ao conectar ao banco de dados.", 500);
 		}
+	}
 
-		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-
-        $pdo->exec('SET NAMES utf8');
-		return $pdo;
+	/**
+	 * @return array
+	 */
+	private function getconfig()
+	{
+		return parse_ini_file(self::DATABASE_CONFIG_PATH);
 	}
 }
