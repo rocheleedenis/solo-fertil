@@ -3,7 +3,7 @@
 require_once '../../_connection/Connection.php';
 require_once "../specials/SpecialProdutor.php";
 
-class DaoProdutor extends SpecialProdutor{
+class FarmerDao extends SpecialProdutor{
     public static function selectAll($id) {
         $database = Connection::connect();
         $query = "select id, nome, fazenda from produtor where idUsuario = :id order by nome asc";
@@ -31,7 +31,7 @@ class DaoProdutor extends SpecialProdutor{
             $pdo->bindValue(':telefone', $this->getTelefone(), PDO::PARAM_STR);
             $pdo->bindValue(':celular', $this->getCelular(), PDO::PARAM_STR);
             $pdo->bindValue(':idUsuario', $this->getIdUsuario(), PDO::PARAM_INT);
-            
+
             $pdo->execute();
             return $database->lastInsertId();
         } catch (PDOException $e) {
