@@ -1,13 +1,13 @@
-<?php 
+<?php
 
     require_once '../../_connection/Connection.php';
     require_once '../specials/SpecialUsuario.php';
 
-class DaoUsuario extends SpecialUsuario{
+class UserDao extends SpecialUsuario{
 
 	public function selectOne($id){
 		$database = Connection::connect();
-		$query = "select id, nome, email from usuario where id = :id"; 
+		$query = "select id, nome, email from usuario where id = :id";
 		try{
 			$pdo = $database->prepare($query);
 			$pdo->bindParam(":id", $id, PDO::PARAM_STR);
@@ -27,7 +27,7 @@ class DaoUsuario extends SpecialUsuario{
 
 	public static function selectLogin($email, $senha){
 		$database = Connection::connect();
-		$query = "select id, nome, senha, email from usuario where email = :email and senha = :senha"; 
+		$query = "select id, nome, senha, email from usuario where email = :email and senha = :senha";
 		try{
 			$pdo = $database->prepare($query);
 			$pdo->bindParam(":email", $email, PDO::PARAM_STR);
@@ -48,7 +48,7 @@ class DaoUsuario extends SpecialUsuario{
 			$pdo->bindValue(':nome', $this->getNome(), PDO::PARAM_STR);
 			$pdo->bindValue(':senha', $this->getSenha(), PDO::PARAM_STR);
 			$pdo->bindValue(':email', $this->getEmail(), PDO::PARAM_STR);
-			
+
 			$pdo->execute();
 			unset($database);
 			return $pdo->rowCount();
