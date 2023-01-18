@@ -1,12 +1,12 @@
-<?php 
+<?php
 
     require_once '../../_connection/Connection.php';
     require_once '../specials/SpecialProducao.php';
 
-class DaoProducao extends SpecialProducao{
-	
+class FarmProductionDao extends SpecialProducao{
+
 	public static function selectBusca($info){
-		$database = Connection::connect(); 
+		$database = Connection::connect();
 		$query = 'select producao.id, producao.idCultura, producao.`data`, cultura.nome as c_nome, produtor.nome as pr_nome, produtor.fazenda from producao, cultura, produtor where produtor.id = :idP and cultura.id = :idC and cultura.id=producao.idCultura  and produtor.id=producao.idprodutor and `data` between :dataI and :dataF order by `data` asc';
 		$dataI = Config::dateToUSA($info['nDataI']);
 		$dataF = Config::dateToUSA($info['nDataF']);
@@ -18,13 +18,13 @@ class DaoProducao extends SpecialProducao{
 			$pdo->bindParam(":dataF", $dataF, PDO::PARAM_STR);
 			$pdo->execute();
 			return $pdo->fetchAll();
-		}catch(PDOException $e){ 
+		}catch(PDOException $e){
 			var_dump($e->getMessage());
 		}
 	}
 
 	public static function selectProdutividade($info){
-		$database = Connection::connect(); 
+		$database = Connection::connect();
 		$query = 'select producao.*, cultura.nome as c_nome, produtor.nome as pr_nome, produtor.fazenda from producao, cultura, produtor where produtor.id = :idP and cultura.id = :idC and cultura.id=producao.idCultura  and produtor.id=producao.idprodutor order by `data` asc';
 		try{
 			$pdo = $database->prepare($query);
@@ -32,14 +32,14 @@ class DaoProducao extends SpecialProducao{
 			$pdo->bindParam(":idC", $info['nCultura'], PDO::PARAM_INT);
 			$pdo->execute();
 			return $pdo->fetchAll();
-		}catch(PDOException $e){ 
+		}catch(PDOException $e){
 			var_dump($e->getMessage());
 		}
 	}
 
 	public function selectOne($id){
-		$database = Connection::connect(); 
-		$query = "select producao.*, produtor.nome as pt_nome, cultura.nome as c_nome, produtor.fazenda from producao join cultura join produtor on producao.id = :id and producao.idProdutor = produtor.id and cultura.id = producao.IdCultura"; 
+		$database = Connection::connect();
+		$query = "select producao.*, produtor.nome as pt_nome, cultura.nome as c_nome, produtor.fazenda from producao join cultura join produtor on producao.id = :id and producao.idProdutor = produtor.id and cultura.id = producao.IdCultura";
 		try{
 			$pdo = $database->prepare($query);
 			$pdo->bindParam(":id", $id, PDO::PARAM_INT);
@@ -72,7 +72,7 @@ class DaoProducao extends SpecialProducao{
 	}
 
 	public function insert(){
-		$database = Connection::connect(); 
+		$database = Connection::connect();
 		$query = "insert into producao values (default, :idUsuario, :idCultura, :data, :areaPlantada, :unidadeArea, :producao, :unidade, :precoVenda, :qtdVendida, :qtdAduboOrganico, :precoAduboOrganico, :gastosNPK, :qtdCalcario, :precoCalcario, :idProdutor)";
 		try {
 			$pdo = $database->prepare($query);
@@ -99,7 +99,7 @@ class DaoProducao extends SpecialProducao{
 	}
 
 	public function update(){
-		$database = Connection::connect(); 
+		$database = Connection::connect();
 		$query = "update producao set idCultura=:idCultura, data=:data, areaPlantada=:areaPlantada, producao=:producao, unidade=:unidade, precoVenda=:precoVenda, qtdVendida=:qtdVendida, gastosNPK=:gastosNPK, qtdAduboOrganico=:qtdAduboOrganico, precoAduboOrganico=:precoAduboOrganico, qtdCalcario=:qtdCalcario, precoCalcario=:precoCalcario, idProdutor=:idProdutor where id=:id";
 		try{
 			$pdo = $database->prepare($query);
@@ -125,7 +125,7 @@ class DaoProducao extends SpecialProducao{
 	}
 
 	public static function delete($id){
-		$database = Connection::connect(); 
+		$database = Connection::connect();
 		$query = "delete from producao where id=:id";
 		try {
 			$pdo = $database->prepare($query);

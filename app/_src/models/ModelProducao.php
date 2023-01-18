@@ -1,9 +1,9 @@
 <?php
 
-require_once "../dao/DaoProducao.php";
+require_once "../dao/FarmProductionDao.php";
 require_once "../interfaces/Iproducao.php";
 
-class Producao extends DaoProducao implements Iproducao{
+class Producao extends FarmProductionDao implements Iproducao{
 
 	public static function sugerirAdubacao($analise, $cultura){
 		$r['calagemAl'] = self::calagemNeutAluminio($analise, $cultura);
