@@ -21,16 +21,16 @@ class UserDao extends SpecialUsuario
 
 			$pdo->execute();
 
-			$oi = $pdo->fetch();
+			$data = $pdo->fetch();
 
-			if (!empty($oi)) {
-				$this->setId($oi['id']);
-				$this->setNome($oi['nome']);
-				$this->setEmail($oi['email']);
+			if (!empty($data)) {
+				$this->setId($data['id']);
+				$this->setNome($data['nome']);
+				$this->setEmail($data['email']);
 			} else {
 				echo "Não foi possível encontrar os dados.";
 			}
-		} catch(PDOException $e) {
+		} catch (PDOException $e) {
 			throw new \Exception('Erro ao buscar informações de usuário.', 500);
 		}
 	}
