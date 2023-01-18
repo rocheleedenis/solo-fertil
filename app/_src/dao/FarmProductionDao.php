@@ -1,81 +1,116 @@
 <?php
 
-    require_once '../../_connection/Connection.php';
-    require_once '../specials/SpecialProducao.php';
+require_once '../../_connection/Connection.php';
+require_once '../specials/SpecialProducao.php';
 
-class FarmProductionDao extends SpecialProducao{
-
-	public static function selectBusca($info){
-		$database = Connection::connect();
+class FarmProductionDao extends SpecialProducao
+{
+	/**
+	 * @param array $data
+	 *
+	 * @return array
+	 */
+	public static function selectBusca($data)
+	{
 		$query = 'select producao.id, producao.idCultura, producao.`data`, cultura.nome as c_nome, produtor.nome as pr_nome, produtor.fazenda from producao, cultura, produtor where produtor.id = :idP and cultura.id = :idC and cultura.id=producao.idCultura  and produtor.id=producao.idprodutor and `data` between :dataI and :dataF order by `data` asc';
-		$dataI = Config::dateToUSA($info['nDataI']);
-		$dataF = Config::dateToUSA($info['nDataF']);
-		try{
-			$pdo = $database->prepare($query);
-			$pdo->bindParam(":idP", $info['nProdutor'], PDO::PARAM_INT);
-			$pdo->bindParam(":idC", $info['nCultura'], PDO::PARAM_INT);
-			$pdo->bindParam(":dataI", $dataI, PDO::PARAM_STR);
-			$pdo->bindParam(":dataF", $dataF, PDO::PARAM_STR);
+
+		try {
+			$pdo = self::prepareQuery($query);
+
+			$pdo->bindParam(':idP', $data['nProdutor'], PDO::PARAM_INT);
+			$pdo->bindParam(':idC', $data['nCultura'], PDO::PARAM_INT);
+			$pdo->bindParam(':dataI', Config::dateToUSA($data['nDataI']), PDO::PARAM_STR);
+			$pdo->bindParam(':dataF', Config::dateToUSA($data['nDataF']), PDO::PARAM_STR);
+
 			$pdo->execute();
+
 			return $pdo->fetchAll();
-		}catch(PDOException $e){
-			var_dump($e->getMessage());
+		} catch (PDOException $e) {
+			throw new \Exception('Erro ao buscar informações.', 500);
 		}
 	}
 
-	public static function selectProdutividade($info){
-		$database = Connection::connect();
+	/**
+	 * @param array $data
+	 *
+	 * @return array
+	 */
+	public static function selectProdutividade($data)
+	{
 		$query = 'select producao.*, cultura.nome as c_nome, produtor.nome as pr_nome, produtor.fazenda from producao, cultura, produtor where produtor.id = :idP and cultura.id = :idC and cultura.id=producao.idCultura  and produtor.id=producao.idprodutor order by `data` asc';
 		try{
-			$pdo = $database->prepare($query);
-			$pdo->bindParam(":idP", $info['nProdutor'], PDO::PARAM_INT);
-			$pdo->bindParam(":idC", $info['nCultura'], PDO::PARAM_INT);
+			$pdo = self::prepareQuery($query);
+
+			$pdo->bindParam(':idP', $data['nProdutor'], PDO::PARAM_INT);
+			$pdo->bindParam(':idC', $data['nCultura'], PDO::PARAM_INT);
+
 			$pdo->execute();
+
 			return $pdo->fetchAll();
-		}catch(PDOException $e){
-			var_dump($e->getMessage());
+		} catch (PDOException $e) {
+			throw new \Exception('Erro ao buscar informações.', 500);
 		}
 	}
 
-	public function selectOne($id){
-		$database = Connection::connect();
-		$query = "select producao.*, produtor.nome as pt_nome, cultura.nome as c_nome, produtor.fazenda from producao join cultura join produtor on producao.id = :id and producao.idProdutor = produtor.id and cultura.id = producao.IdCultura";
+	/**
+	 * @param int $id
+	 *
+	 * @return array
+	 */
+	public function selectOne($id)
+	{
+		$query = 'select producao.*, produtor.nome as pt_nome, cultura.nome as c_nome, produtor.fazenda from producao join cultura join produtor on producao.id = :id and producao.idProdutor = produtor.id and cultura.id = producao.IdCultura';
+
 		try{
-			$pdo = $database->prepare($query);
-			$pdo->bindParam(":id", $id, PDO::PARAM_INT);
+			$pdo = self::prepareQuery($query);
+
+			$pdo->bindParam(':id', $id, PDO::PARAM_INT);
+
 			$pdo->execute();
-			$oi = $pdo->fetch();
-			if (!empty($oi)) {
-				$this->setId($oi['id']);
-				$this->setIdCultura($oi['idCultura']);
-				$this->setIdUsuario($oi['idUsuario']);
-				$this->setData($oi['data']);
-				$this->setAreaPlantada($oi['areaPlantada']);
-				$this->setUnidadeArea($oi['unidadeArea']);
-				$this->setProducao($oi['producao']);
-				$this->setUnidade($oi['unidade']);
-				$this->setPrecoVenda($oi['precoVenda']);
-				$this->setQtdVendida($oi['qtdVendida']);
-				$this->setQtdAduboOrganico($oi['qtdAduboOrganico']);
-				$this->setPrecoAduboOrganico($oi['precoAduboOrganico']);
-				$this->setGastosNPK($oi['gastosNPK']);
-				$this->setQtdCalcario($oi['qtdCalcario']);
-				$this->setPrecoCalcario($oi['precoCalcario']);
-				$this->setIdProdutor($oi['idProdutor']);
-				return array('cultura' => $oi['c_nome'], 'produtor' => $oi['pt_nome'], 'fazenda' => $oi['fazenda']);
-			}else{
-				echo "Nenhum registro encontrado com esse id";
+
+			$data = $pdo->fetch();
+
+			if (!empty($data)) {
+				$this->setId($data['id']);
+				$this->setIdCultura($data['idCultura']);
+				$this->setIdUsuario($data['idUsuario']);
+				$this->setData($data['data']);
+				$this->setAreaPlantada($data['areaPlantada']);
+				$this->setUnidadeArea($data['unidadeArea']);
+				$this->setProducao($data['producao']);
+				$this->setUnidade($data['unidade']);
+				$this->setPrecoVenda($data['precoVenda']);
+				$this->setQtdVendida($data['qtdVendida']);
+				$this->setQtdAduboOrganico($data['qtdAduboOrganico']);
+				$this->setPrecoAduboOrganico($data['precoAduboOrganico']);
+				$this->setGastosNPK($data['gastosNPK']);
+				$this->setQtdCalcario($data['qtdCalcario']);
+				$this->setPrecoCalcario($data['precoCalcario']);
+				$this->setIdProdutor($data['idProdutor']);
+
+				return array(
+					'cultura' => $data['c_nome'],
+					'produtor' => $data['pt_nome'],
+					'fazenda' => $data['fazenda']
+				);
+			} else {
+				echo 'Nenhum registro encontrado com esse id';
 			}
-		}catch(PDOException $e){
-			var_dump($e->getMessage());
+		} catch (PDOException $e) {
+			throw new \Exception('Erro ao buscar informações.', 500);
 		}
 	}
 
-	public function insert(){
-		$database = Connection::connect();
-		$query = "insert into producao values (default, :idUsuario, :idCultura, :data, :areaPlantada, :unidadeArea, :producao, :unidade, :precoVenda, :qtdVendida, :qtdAduboOrganico, :precoAduboOrganico, :gastosNPK, :qtdCalcario, :precoCalcario, :idProdutor)";
+	/**
+	 * @return int
+	 */
+	public function insert()
+	{
+		$query = 'insert into producao values (default, :idUsuario, :idCultura, :data, :areaPlantada, :unidadeArea, :producao, :unidade, :precoVenda, :qtdVendida, :qtdAduboOrganico, :precoAduboOrganico, :gastosNPK, :qtdCalcario, :precoCalcario, :idProdutor)';
+
 		try {
-			$pdo = $database->prepare($query);
+			$pdo = self::prepareQuery($query);
+
 			$pdo->bindValue(':idCultura', $this->getIdCultura(), PDO::PARAM_INT);
 			$pdo->bindValue(':idUsuario', $this->getIdUsuario(), PDO::PARAM_INT);
 			$pdo->bindValue(':data', $this->getData(), PDO::PARAM_STR);
@@ -91,18 +126,25 @@ class FarmProductionDao extends SpecialProducao{
 			$pdo->bindValue(':qtdCalcario', $this->getQtdCalcario(), PDO::PARAM_STR);
 			$pdo->bindValue(':precoCalcario', $this->getPrecoCalcario(), PDO::PARAM_STR);
 			$pdo->bindValue(':idProdutor', $this->getIdProdutor(), PDO::PARAM_STR);
+
 			$pdo->execute();
+
 			return $pdo->rowCount();
 		} catch (PDOException $e) {
-			var_dump($e->getMessage());die();
+			throw new \Exception('Erro ao savar informações.', 500);
 		}
 	}
 
-	public function update(){
-		$database = Connection::connect();
-		$query = "update producao set idCultura=:idCultura, data=:data, areaPlantada=:areaPlantada, producao=:producao, unidade=:unidade, precoVenda=:precoVenda, qtdVendida=:qtdVendida, gastosNPK=:gastosNPK, qtdAduboOrganico=:qtdAduboOrganico, precoAduboOrganico=:precoAduboOrganico, qtdCalcario=:qtdCalcario, precoCalcario=:precoCalcario, idProdutor=:idProdutor where id=:id";
+	/**
+	 * @return int
+	 */
+	public function update()
+	{
+		$query = 'update producao set idCultura=:idCultura, data=:data, areaPlantada=:areaPlantada, producao=:producao, unidade=:unidade, precoVenda=:precoVenda, qtdVendida=:qtdVendida, gastosNPK=:gastosNPK, qtdAduboOrganico=:qtdAduboOrganico, precoAduboOrganico=:precoAduboOrganico, qtdCalcario=:qtdCalcario, precoCalcario=:precoCalcario, idProdutor=:idProdutor where id=:id';
+
 		try{
-			$pdo = $database->prepare($query);
+			$pdo = self::prepareQuery($query);
+
 			$pdo->bindValue(':id', $this->getId(), PDO::PARAM_INT);
 			$pdo->bindValue(':idCultura', $this->getIdCultura(), PDO::PARAM_INT);
 			$pdo->bindValue(':data', $this->getData(), PDO::PARAM_STR);
@@ -117,23 +159,46 @@ class FarmProductionDao extends SpecialProducao{
 			$pdo->bindValue(':qtdCalcario', $this->getQtdCalcario(), PDO::PARAM_STR);
 			$pdo->bindValue(':qtdAduboOrganico', $this->getQtdAduboOrganico(), PDO::PARAM_STR);
 			$pdo->bindValue(':idProdutor', $this->getIdProdutor(), PDO::PARAM_STR);
+
 			$pdo->execute();
+
 			return $pdo->rowCount();
-		}catch(PDOException $e){
-			var_dump($e->getMessage());
+		} catch (PDOException $e) {
+			throw new \Exception('Erro ao buscar informações.', 500);
 		}
 	}
 
-	public static function delete($id){
-		$database = Connection::connect();
-		$query = "delete from producao where id=:id";
+	/**
+	 * @param int $id
+	 *
+	 * @return int
+	 */
+	public static function delete($id)
+	{
+		$query = 'delete from producao where id=:id';
+
 		try {
-			$pdo = $database->prepare($query);
+			$pdo = self::prepareQuery($query);
+
 			$pdo->bindParam(':id', $id, PDO::PARAM_INT);
+
 			$pdo->execute();
+
 			return $pdo->rowCount();
 		} catch (PDOException $e) {
-			var_dump($e->getMessage());
+			throw new \Exception('Erro ao remover informações.', 500);
 		}
+	}
+
+	/**
+	 * @param string $query
+	 *
+	 * @return PDOStatement
+	 */
+	private function prepareQuery($query)
+	{
+		$connection = Connection::connect();
+
+		return $connection->prepare($query);
 	}
 }
