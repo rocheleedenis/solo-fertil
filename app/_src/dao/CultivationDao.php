@@ -1,16 +1,16 @@
-<?php 
+<?php
 
     require_once '../../_connection/Connection.php';
     require_once '../specials/SpecialCultura.php';
     require_once '../models/ModelAdubacaoMineral.php';
     require_once '../models/ModelParcelamentoAdubNPK.php';
 
-class DaoCultura extends SpecialCultura{
+class CultivationDao extends SpecialCultura{
 
 	public static function selectAll(){
 		$database = Connection::connect();
 		$query = "select id, nome, familia from cultura order by nome asc";
-		
+
 		try{
 			$pdo = $database->prepare($query);
 			$pdo->execute();
@@ -22,8 +22,8 @@ class DaoCultura extends SpecialCultura{
 
 	public static function selectSucessao($id){
 		$database = Connection::connect();
-		$query = "select cultura.id, nome, disponibNutriente, p2o5soloArgiloso, p2o5soloMedio, p2o5soloArenoso, 
-			k2o, nitrogenio from cultura, adubacaoMineral where 
+		$query = "select cultura.id, nome, disponibNutriente, p2o5soloArgiloso, p2o5soloMedio, p2o5soloArenoso,
+			k2o, nitrogenio from cultura, adubacaoMineral where
 			cultura.id = adubacaoMineral.idCultura and familia <> (select familia from cultura where id = :id);";
 		try {
 			$pdo = $database->prepare($query);
@@ -56,7 +56,7 @@ class DaoCultura extends SpecialCultura{
 					$aux[$cult]['adubacao'][$p]['p2o5soloMedio'] = $value['p2o5soloMedio'];
 					$aux[$cult]['adubacao'][$p]['p2o5soloArenoso'] = $value['p2o5soloArenoso'];
 					$aux[$cult]['adubacao'][$p]['k2o'] = $value['k2o'];
-					$aux[$cult]['adubacao'][$p]['nitrogenio'] = $value['nitrogenio']; 
+					$aux[$cult]['adubacao'][$p]['nitrogenio'] = $value['nitrogenio'];
 					unset($oi[$key]);
 					$p++;
 				}
@@ -90,7 +90,7 @@ class DaoCultura extends SpecialCultura{
 				$this->setObservacoes($oi['observacoes']);
 				$this->setParcelamentoNPK($oi['parcelamentoNPK']);
 				$this->setObsQuadroNPK($oi['obsQuadroNPK']);
-				
+
 				$this->setAdubMineralTable(AdubacaoMineral::select($this->getId()));
 
 				$this->setParcNPKtable(ParcelamentoAdubNPK::select($this->getId()));
