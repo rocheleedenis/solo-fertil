@@ -1,7 +1,8 @@
 <?php
 
 require_once '../../_connection/Connection.php';
-require_once "../specials/SpecialProdutor.php";
+require_once '../specials/SpecialProdutor.php';
+require_once '../lang/Translator.php';
 
 class FarmerDao extends SpecialProdutor
 {
@@ -12,7 +13,7 @@ class FarmerDao extends SpecialProdutor
      */
     public static function selectAll($id)
     {
-        $query = "select id, nome, fazenda from produtor where idUsuario = :id order by nome asc";
+        $query = 'select id, nome, fazenda from produtor where idUsuario = :id order by nome asc';
 
         try{
             $pdo = self::prepareQuery($query);
@@ -23,7 +24,7 @@ class FarmerDao extends SpecialProdutor
 
             return $pdo->fetchAll();
         } catch (PDOException $e) {
-            throw new \Exception('Erro ao buscar informações de usuário.', 500);
+            throw new \Exception(Translator::get('exceptions.query_execution.select'), 500);
         }
     }
 
@@ -32,7 +33,7 @@ class FarmerDao extends SpecialProdutor
      */
     public function insert()
     {
-        $query = "insert into produtor values (default, :nome, :fazenda, :logradouro, :bairro, :area, :cidade, :telefone, :celular, :idUsuario)";
+        $query = 'insert into produtor values (default, :nome, :fazenda, :logradouro, :bairro, :area, :cidade, :telefone, :celular, :idUsuario)';
 
         try {
             $database = Connection::connect();
@@ -52,7 +53,7 @@ class FarmerDao extends SpecialProdutor
 
             return $database->lastInsertId();
         } catch (PDOException $e) {
-            throw new \Exception('Erro ao buscar informações de usuário.', 500);
+            throw new \Exception(Translator::get('exceptions.query_execution.save'), 500);
         }
     }
 
@@ -63,7 +64,7 @@ class FarmerDao extends SpecialProdutor
      */
     public function selectOne($id)
     {
-        $query = "select id, nome, fazenda, logradouro, bairro, area, cidade, telefone, celular from produtor where id = :id";
+        $query = 'select id, nome, fazenda, logradouro, bairro, area, cidade, telefone, celular from produtor where id = :id';
 
         try {
             $pdo = self::prepareQuery($query);
@@ -83,10 +84,10 @@ class FarmerDao extends SpecialProdutor
                 $this->setTelefone($data['telefone']);
                 $this->setCelular($data['celular']);
             } else {
-                echo "Não foi possível recuperar dados";
+                echo Translator::get('errors.query_execution.not_found');
             }
         } catch (PDOException $e) {
-            throw new \Exception('Erro ao buscar informações de usuário.', 500);
+            throw new \Exception(Translator::get('exceptions.query_execution.select'), 500);
         }
     }
 
@@ -95,7 +96,7 @@ class FarmerDao extends SpecialProdutor
      */
     public function update()
     {
-        $query = "update produtor set nome = :nome, fazenda=:fazenda, logradouro = :logradouro, bairro = :bairro, area = :area, cidade = :cidade, telefone = :telefone, celular = :celular where id = :id";
+        $query = 'update produtor set nome = :nome, fazenda=:fazenda, logradouro = :logradouro, bairro = :bairro, area = :area, cidade = :cidade, telefone = :telefone, celular = :celular where id = :id';
 
         try {
             $pdo = self::prepareQuery($query);
@@ -114,7 +115,7 @@ class FarmerDao extends SpecialProdutor
 
             return $pdo->rowCount();
         } catch (PDOException $e) {
-			throw new \Exception('Erro ao atualizar informações.', 500);
+			throw new \Exception(Translator::get('exceptions.query_execution.save'), 500);
         }
     }
 
@@ -125,7 +126,7 @@ class FarmerDao extends SpecialProdutor
 	 */
     public static function delete($id)
     {
-        $query = "delete from produtor where id = :id";
+        $query = 'delete from produtor where id = :id';
 
         try {
             $pdo = self::prepareQuery($query);
@@ -136,7 +137,7 @@ class FarmerDao extends SpecialProdutor
 
             return $pdo->rowCount();
         } catch (PDOException $e) {
-            throw new \Exception('Erro ao remover informações.', 500);
+            throw new \Exception(Translator::get('exceptions.query_execution.delete'), 500);
         }
     }
 

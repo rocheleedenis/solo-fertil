@@ -2,6 +2,7 @@
 
 require_once '../../_connection/Connection.php';
 require_once '../specials/SpecialProducao.php';
+require_once '../lang/Translator.php';
 
 class FarmProductionDao extends SpecialProducao
 {
@@ -26,7 +27,7 @@ class FarmProductionDao extends SpecialProducao
 
 			return $pdo->fetchAll();
 		} catch (PDOException $e) {
-			throw new \Exception('Erro ao buscar informações.', 500);
+			throw new \Exception(Translator::get('exceptions.query_execution.select'), 500);
 		}
 	}
 
@@ -48,7 +49,7 @@ class FarmProductionDao extends SpecialProducao
 
 			return $pdo->fetchAll();
 		} catch (PDOException $e) {
-			throw new \Exception('Erro ao buscar informações.', 500);
+			throw new \Exception(Translator::get('exceptions.query_execution.select'), 500);
 		}
 	}
 
@@ -94,10 +95,10 @@ class FarmProductionDao extends SpecialProducao
 					'fazenda' => $data['fazenda']
 				);
 			} else {
-				echo 'Nenhum registro encontrado com esse id';
+				echo Translator::get('errors.query_execution.not_found');
 			}
 		} catch (PDOException $e) {
-			throw new \Exception('Erro ao buscar informações.', 500);
+			throw new \Exception(Translator::get('exceptions.query_execution.select'), 500);
 		}
 	}
 
@@ -131,7 +132,7 @@ class FarmProductionDao extends SpecialProducao
 
 			return $pdo->rowCount();
 		} catch (PDOException $e) {
-			throw new \Exception('Erro ao savar informações.', 500);
+			throw new \Exception(Translator::get('exceptions.query_execution.save'), 500);
 		}
 	}
 
@@ -164,7 +165,7 @@ class FarmProductionDao extends SpecialProducao
 
 			return $pdo->rowCount();
 		} catch (PDOException $e) {
-			throw new \Exception('Erro ao buscar informações.', 500);
+			throw new \Exception(Translator::get('exceptions.query_execution.save'), 500);
 		}
 	}
 
@@ -186,7 +187,7 @@ class FarmProductionDao extends SpecialProducao
 
 			return $pdo->rowCount();
 		} catch (PDOException $e) {
-			throw new \Exception('Erro ao remover informações.', 500);
+			throw new \Exception(Translator::get('exceptions.query_execution.delete'), 500);
 		}
 	}
 
