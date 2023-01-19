@@ -1,9 +1,9 @@
-<?php 
+<?php
 
 	require_once '../../_connection/Connection.php';
 
-class DaoParcelamentoAdubNPK{
-
+class NPKFertilizerInstallment
+{
 	public static function select($idCultura){
 		$database = Connection::connect();
 		$query = "select nutriente, ciclo, porcentagem from parcelamentoAdubNPK where idCultura = :id";
