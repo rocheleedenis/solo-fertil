@@ -1,9 +1,9 @@
-<?php 
+<?php
 
     require_once '../../_connection/Connection.php';
     require_once '../specials/SpecialAnalise.php';
 
-class DaoAnalise extends SpecialAnalise{
+class SoilChemicalAnalysisDao extends SpecialAnalise{
 
 	public static function selectAll($idU){
 		$database = Connection::connect();
@@ -13,7 +13,7 @@ class DaoAnalise extends SpecialAnalise{
 			$pdo->bindParam(":idU", $idU, PDO::PARAM_INT);
 			$pdo->execute();
 			return $pdo->fetchAll();
-		}catch(PDOException $e){ 
+		}catch(PDOException $e){
 			var_dump($e->getMessage());
 		}
 	}
@@ -55,7 +55,7 @@ class DaoAnalise extends SpecialAnalise{
 				$this->setCtcPH7();
 				$this->setSaturacaoBases();
 				$this->setSaturacaoAl();
-				
+
 				return array('nome' =>$oi['nome'], 'fazenda' => $oi['fazenda']);
 			}
 		}catch(PDOException $e){
@@ -84,9 +84,9 @@ class DaoAnalise extends SpecialAnalise{
 			$pdo->bindValue(':teorArgila', $this->getTeorArgila(), PDO::PARAM_STR);
 			$pdo->bindValue(':idProdutor', $this->getIdProdutor(), PDO::PARAM_INT);
 			$pdo->bindValue(':idUsuario', $this->getIdUsuario(), PDO::PARAM_INT);
-			
+
 			$pdo->execute();
-			
+
 			return $database->lastInsertId();
 		} catch (PDOException $e) {
 			var_dump($e->getMessage());die();
