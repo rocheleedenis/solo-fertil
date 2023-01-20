@@ -1,0 +1,41 @@
+<?php
+
+class RoutesMapping
+{
+    const HOME = -1;
+    const INICIO = 15;
+    const FORMLOGIN = 1;
+    const LOGIN = 2;
+    const LOGOFF = 3;
+    const CADASTRARUSER = 5;
+    const INTERPRETACAORESULT = 7;
+    const SUGERIRADUBACAO = 8;
+    const SUGERIRADUBACAORESULT = 9;
+    const SUGERIRCULTURA = 10;
+    const SUGERIRCULTURARESULT = 11;
+    const PREENCHERANALISE = 12;
+    const INFORMACOES = 13;
+    const INFORMACOESRESULT = 14;
+    const FORMCADASTROANALISE = 15;
+    const CADASTRARANALISE = 16;
+    const SELECIONARANALISE = 17;
+    const EDITARANALISE = 18;
+    const SALVARANALISE = 20;
+    const FORMCADASTRARPRODUTOR = 21;
+    const CADASTRARPRODUTOR = 22;
+    const SELECIONARPRODUTOR = 23;
+    const EDITARPRODUTOR = 24;
+    const SALVARPRODUTOR = 25;
+    const FORMCADASTRARPRODUCAO = 27;
+    const CADASTRARPRODUCAO = 28;
+    const SELECIONARPRODUCAO = 29;
+    const CONSULTARPRODUCAO = 30;
+    const EDITARPRODUCAO = 31;
+    const SALVARPRODUCAO = 32;
+    const FORMPRODUTIVIDADE = 34;
+    const PRODUTIVIDADE = 35;
+    const CONSULTARUSUARIO = 36;
+    const EDITARUSUARIO = 37;
+    const SALVARUSUARIO = 38;
+    const AJUDA = 39;
+}

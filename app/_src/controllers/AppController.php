@@ -1,58 +1,21 @@
 <?php session_start();
 
-	require_once "../view/ViewAnalise.php";
-	require_once "../view/ViewApp.php";
-	require_once "../view/ViewCultura.php";
-	require_once "../view/ViewUsuario.php";
-	require_once "../view/ViewProdutor.php";
-	require_once "../view/ViewProducao.php";
-	require_once "../models/ModelAnalise.php";
-	require_once "../models/ModelCultura.php";
-	require_once "../models/ModelUsuario.php";
-	require_once "../models/ModelProducao.php";
-	require_once "../models/ModelProdutor.php";
-    require_once "LoginController.php";
-	require_once "../../_config/config.php";
+require_once '../view/ViewAnalise.php';
+require_once '../view/ViewApp.php';
+require_once '../view/ViewCultura.php';
+require_once '../view/ViewUsuario.php';
+require_once '../view/ViewProdutor.php';
+require_once '../view/ViewProducao.php';
+require_once '../models/ModelAnalise.php';
+require_once '../models/ModelCultura.php';
+require_once '../models/ModelUsuario.php';
+require_once '../models/ModelProducao.php';
+require_once '../models/ModelProdutor.php';
+require_once 'LoginController.php';
+require_once '../../_config/config.php';
+require_once '../routes/RoutesMapping.php';
 
 class AppController {
-
-	const HOME = -1;
-	const INICIO = 15;
-	const FORMLOGIN = 1;
-	const LOGIN = 2;
-	const LOGOFF = 3;
-	const CADASTRARUSER = 5;
-	const INTERPRETACAORESULT = 7;
-	const SUGERIRADUBACAO = 8;
-	const SUGERIRADUBACAORESULT = 9;
-	const SUGERIRCULTURA = 10;
-	const SUGERIRCULTURARESULT = 11;
-	const PREENCHERANALISE = 12;
-	const INFORMACOES = 13;
-	const INFORMACOESRESULT = 14;
-	const FORMCADASTROANALISE = 15;
-	const CADASTRARANALISE = 16;
-	const SELECIONARANALISE = 17;
-	const EDITARANALISE = 18;
-	const SALVARANALISE = 20;
-	const FORMCADASTRARPRODUTOR = 21;
-	const CADASTRARPRODUTOR = 22;
-	const SELECIONARPRODUTOR = 23;
-	const EDITARPRODUTOR = 24;
-	const SALVARPRODUTOR = 25;
-	const FORMCADASTRARPRODUCAO = 27;
-	const CADASTRARPRODUCAO = 28;
-	const SELECIONARPRODUCAO = 29;
-    const CONSULTARPRODUCAO = 30;
-    const EDITARPRODUCAO = 31;
-    const SALVARPRODUCAO = 32;
-    const FORMPRODUTIVIDADE = 34;
-    const PRODUTIVIDADE = 35;
-    const CONSULTARUSUARIO = 36;
-    const EDITARUSUARIO = 37;
-    const SALVARUSUARIO = 38;
-    const AJUDA = 39;
-
 	public static function inicio(){
 		ViewApp::inicio();
 	}
@@ -584,110 +547,110 @@ if($acao == null){
 
 if(LoginController::verificaLogado()){
 	switch ($acao) {
-    case AppController::INTERPRETACAORESULT:
+    case RoutesMapping::INTERPRETACAORESULT:
         $controle->interpretacaoResult();
         break;
-    case AppController::SUGERIRADUBACAO:
+    case RoutesMapping::SUGERIRADUBACAO:
         $controle->formAdubacao();
         break;
-    case AppController::SUGERIRADUBACAORESULT:
+    case RoutesMapping::SUGERIRADUBACAORESULT:
         $controle->sugerirAdubacao();
         break;
-    case AppController::SUGERIRCULTURA:
+    case RoutesMapping::SUGERIRCULTURA:
         $controle->formSugestaoCultura();
         break;
-    case AppController::SUGERIRCULTURARESULT:
+    case RoutesMapping::SUGERIRCULTURARESULT:
         $controle->sugerirCultura();
         break;
-    case AppController::PREENCHERANALISE:
+    case RoutesMapping::PREENCHERANALISE:
         $controle->preencherAnalise();
         break;
-    case AppController::INFORMACOES:
+    case RoutesMapping::INFORMACOES:
         $controle->formSelecionarInfo();
         break;
-    case AppController::INFORMACOESRESULT:
+    case RoutesMapping::INFORMACOESRESULT:
         $controle->infoCultura();
         break;
-    case AppController::FORMCADASTROANALISE:
+    case RoutesMapping::FORMCADASTROANALISE:
         $controle->formCadastroAnalise();
         break;
-    case AppController::CADASTRARANALISE:
+    case RoutesMapping::CADASTRARANALISE:
         $controle->cadastrarAnalise();
         break;
-    case AppController::SELECIONARANALISE:
+    case RoutesMapping::SELECIONARANALISE:
         $controle->selecionarAnalise();
         break;
-    case AppController::EDITARANALISE:
+    case RoutesMapping::EDITARANALISE:
         $controle->editarAnalise();
         break;
-    case AppController::SALVARANALISE:
+    case RoutesMapping::SALVARANALISE:
         $controle->salvarAnalise();
         break;
-    case AppController::FORMCADASTRARPRODUTOR:
+    case RoutesMapping::FORMCADASTRARPRODUTOR:
         $controle->formCadastroProdutor();
         break;
-    case AppController::CADASTRARPRODUTOR:
+    case RoutesMapping::CADASTRARPRODUTOR:
         $controle->cadastrarProdutor();
         break;
-    case AppController::SELECIONARPRODUTOR:
+    case RoutesMapping::SELECIONARPRODUTOR:
         $controle->selecionarProdutor();
         break;
-    case AppController::EDITARPRODUTOR:
+    case RoutesMapping::EDITARPRODUTOR:
         $controle->editarProdutor();
         break;
-    case AppController::SALVARPRODUTOR:
+    case RoutesMapping::SALVARPRODUTOR:
         $controle->salvarProdutor();
         break;
-    case AppController::FORMCADASTRARPRODUCAO:
+    case RoutesMapping::FORMCADASTRARPRODUCAO:
         $controle->formCadastroProducao();
         break;
-    case AppController::CADASTRARPRODUCAO:
+    case RoutesMapping::CADASTRARPRODUCAO:
         $controle->cadastrarProducao();
         break;
-    case AppController::SELECIONARPRODUCAO:
+    case RoutesMapping::SELECIONARPRODUCAO:
         $controle->selecionarProducao();
         break;
-    case AppController::CONSULTARPRODUCAO:
+    case RoutesMapping::CONSULTARPRODUCAO:
         $controle->consultarProducao();
         break;
-    case AppController::EDITARPRODUCAO:
+    case RoutesMapping::EDITARPRODUCAO:
         $controle->editarProducao();
         break;
-    case AppController::SALVARPRODUCAO:
+    case RoutesMapping::SALVARPRODUCAO:
         $controle->salvarProducao();
         break;
-    case AppController::FORMPRODUTIVIDADE:
+    case RoutesMapping::FORMPRODUTIVIDADE:
         $controle->formProdutividade();
         break;
-    case AppController::PRODUTIVIDADE:
+    case RoutesMapping::PRODUTIVIDADE:
         $controle->produtividade();
         break;
-    case AppController::CONSULTARUSUARIO:
+    case RoutesMapping::CONSULTARUSUARIO:
         $controle->consultarUsuario();
         break;
-    case AppController::EDITARUSUARIO:
+    case RoutesMapping::EDITARUSUARIO:
         $controle->editarUsuario();
         break;
-    case AppController::SALVARUSUARIO:
+    case RoutesMapping::SALVARUSUARIO:
         $controle->salvarUsuario();
         break;
-    case AppController::AJUDA:
+    case RoutesMapping::AJUDA:
         $controle->ajuda();
         break;
     // relacionados a login
-    case AppController::HOME:
+    case RoutesMapping::HOME:
         $controle->home();
         break;
-    case AppController::FORMLOGIN:
+    case RoutesMapping::FORMLOGIN:
         $controle->formLogin();
         break;
-    case AppController::LOGIN:
+    case RoutesMapping::LOGIN:
         $controle->logar();
         break;
-    case AppController::LOGOFF:
+    case RoutesMapping::LOGOFF:
         $controle->sair();
         break;
-    case AppController::CADASTRARUSER:
+    case RoutesMapping::CADASTRARUSER:
         $controle->cadastrarUser();
         break;
     default:
