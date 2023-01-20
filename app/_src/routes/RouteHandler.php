@@ -3,7 +3,6 @@
 class RouteHandler
 {
     private $actionPath;
-
     public function handleRouting()
     {
         $app = new AppController();
@@ -54,119 +53,77 @@ class RouteHandler
     {
         switch ($this->getActionPath()) {
             case RoutesMapping::INTERPRETACAORESULT:
-                $app->interpretacaoResult();
-                break;
+                return $app->interpretacaoResult();
             case RoutesMapping::SUGERIRADUBACAO:
-                $app->formAdubacao();
-                break;
+                return $app->formAdubacao();
             case RoutesMapping::SUGERIRADUBACAORESULT:
-                $app->sugerirAdubacao();
-                break;
+                return $app->sugerirAdubacao();
             case RoutesMapping::SUGERIRCULTURA:
-                $app->formSugestaoCultura();
-                break;
+                return $app->formSugestaoCultura();
             case RoutesMapping::SUGERIRCULTURARESULT:
-                $app->sugerirCultura();
-                break;
+                return $app->sugerirCultura();
             case RoutesMapping::PREENCHERANALISE:
-                $app->preencherAnalise();
-                break;
+                return $app->preencherAnalise();
             case RoutesMapping::INFORMACOES:
-                $app->formSelecionarInfo();
-                break;
+                return $app->formSelecionarInfo();
             case RoutesMapping::INFORMACOESRESULT:
-                $app->infoCultura();
-                break;
+                return $app->infoCultura();
             case RoutesMapping::FORMCADASTROANALISE:
-                $app->formCadastroAnalise();
-                break;
+                return $app->formCadastroAnalise();
             case RoutesMapping::CADASTRARANALISE:
-                $app->cadastrarAnalise();
-                break;
+                return $app->cadastrarAnalise();
             case RoutesMapping::SELECIONARANALISE:
-                $app->selecionarAnalise();
-                break;
+                return $app->selecionarAnalise();
             case RoutesMapping::EDITARANALISE:
-                $app->editarAnalise();
-                break;
+                return $app->editarAnalise();
             case RoutesMapping::SALVARANALISE:
-                $app->salvarAnalise();
-                break;
+                return $app->salvarAnalise();
             case RoutesMapping::FORMCADASTRARPRODUTOR:
-                $app->formCadastroProdutor();
-                break;
+                return $app->formCadastroProdutor();
             case RoutesMapping::CADASTRARPRODUTOR:
-                $app->cadastrarProdutor();
-                break;
+                return $app->cadastrarProdutor();
             case RoutesMapping::SELECIONARPRODUTOR:
-                $app->selecionarProdutor();
-                break;
+                return $app->selecionarProdutor();
             case RoutesMapping::EDITARPRODUTOR:
-                $app->editarProdutor();
-                break;
+                return $app->editarProdutor();
             case RoutesMapping::SALVARPRODUTOR:
-                $app->salvarProdutor();
-                break;
+                return $app->salvarProdutor();
             case RoutesMapping::FORMCADASTRARPRODUCAO:
-                $app->formCadastroProducao();
-                break;
+                return $app->formCadastroProducao();
             case RoutesMapping::CADASTRARPRODUCAO:
-                $app->cadastrarProducao();
-                break;
+                return $app->cadastrarProducao();
             case RoutesMapping::SELECIONARPRODUCAO:
-                $app->selecionarProducao();
-                break;
+                return $app->selecionarProducao();
             case RoutesMapping::CONSULTARPRODUCAO:
-                $app->consultarProducao();
-                break;
+                return $app->consultarProducao();
             case RoutesMapping::EDITARPRODUCAO:
-                $app->editarProducao();
-                break;
+                return $app->editarProducao();
             case RoutesMapping::SALVARPRODUCAO:
-                $app->salvarProducao();
-                break;
+                return $app->salvarProducao();
             case RoutesMapping::FORMPRODUTIVIDADE:
-                $app->formProdutividade();
-                break;
+                return $app->formProdutividade();
             case RoutesMapping::PRODUTIVIDADE:
-                $app->produtividade();
-                break;
+                return $app->produtividade();
             case RoutesMapping::CONSULTARUSUARIO:
-                $app->consultarUsuario();
-                break;
+                return $app->consultarUsuario();
             case RoutesMapping::EDITARUSUARIO:
-                $app->editarUsuario();
-                break;
+                return $app->editarUsuario();
             case RoutesMapping::SALVARUSUARIO:
-                $app->salvarUsuario();
-                break;
+                return $app->salvarUsuario();
             case RoutesMapping::AJUDA:
-                $app->ajuda();
-                break;
-            // relacionados a login
+                return $app->ajuda();
             case RoutesMapping::HOME:
-                $app->home();
-                break;
+                return $app->home();
             case RoutesMapping::FORMLOGIN:
-                $app->formLogin();
-                break;
+                return $app->formLogin();
             case RoutesMapping::LOGIN:
-                $app->logar();
-                break;
+                return $app->logar();
             case RoutesMapping::LOGOFF:
-                $app->sair();
-                break;
+                return $app->sair();
             case RoutesMapping::CADASTRARUSER:
-                $app->cadastrarUser();
-                break;
+                return $app->cadastrarUser();
             default:
-                if(!LoginController::verificaLogado()){
-                    $app->inicio();
-                }else{
-                    $app->home();
-                }
-                break;
-
+                echo '<h2>Opss... Página não encontrada.</h2>';
         }
     }
 }
