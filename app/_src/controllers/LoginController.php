@@ -2,10 +2,15 @@
 
 class LoginController
 {
+    // Why my god?
+    const MAXIMUM_PASSWORD_LENGTH = 10;
+    CONST MINIMUM_PASSWORD_LENGTH = 6;
+
     /**
      * @return void
      */
-    public static function sair(){
+    public static function sair()
+    {
 		LoginController::terminaSessao();
 		AppController::inicio();
 	}
@@ -13,35 +18,46 @@ class LoginController
     /**
      * @return void
      */
-    public static function logar(){
-		if(LoginController::iniciarSessao()){
-    		AppController::home();
-	    }else{
-	    	ViewApp::loginIncorreto();
-	    }
+    public static function logar()
+    {
+		LoginController::iniciarSessao()
+            ? AppController::home()
+	        : ViewApp::loginIncorreto();
 	}
 
     /**
      * @return void
      */
-    public static function cadastrarUser(){
-        if((strlen(filter_input(INPUT_POST, 'nSenha')) >= 6) && (strlen(filter_input(INPUT_POST, 'nSenha')) <= 10)){
-            $usuario = new Usuario(
-                null,
-                filter_input(INPUT_POST, 'nNome'),
-                filter_input(INPUT_POST, 'nEmail'),
-                sha1(filter_input(INPUT_POST, 'nSenha'))
-            );
-            $x = $usuario->insert();
-            if($x > 0){
-                LoginController::iniciarSessao();
-                ViewAnalise::home();
-            }else{
-                ViewApp::mensagem('Não foi possível cadastrar usuário.', "Cadastrar usuário", 4);
-            }
-        }else{
+    public static function cadastrarUser()
+    {
+        $request = $_POST;
+
+        $passwordLength = strlen($request['nSenha']);
+
+        if (
+            $passwordLength < self::MINIMUM_PASSWORD_LENGTH
+            || $passwordLength > self::MAXIMUM_PASSWORD_LENGTH
+        ) {
             ViewApp::mensagem('<p>Não foi possível cadastrar usuário.<p><p>Senha muito grande ou muito curta.</p>', "Cadastrar usuário", 4);
+
+            return;
         }
+
+        $user = new Usuario(
+            null,
+            $request['nNome'],
+            $request['nEmail'],
+            sha1($request['nSenha'])
+        );
+
+        if (!$user->insert()) {
+            ViewApp::mensagem('Não foi possível cadastrar usuário.', "Cadastrar usuário", 4);
+
+            return;
+        }
+
+        LoginController::iniciarSessao();
+        ViewAnalise::home();
 	}
 
     /**
