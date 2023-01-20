@@ -36,6 +36,8 @@ class RouteHandler
 
         if (!$hash) {
             $this->actionPath = RoutesMapping::HOME;
+
+            return $this->actionPath;
         }
 
         $this->actionPath = base64_decode($hash);
@@ -43,6 +45,11 @@ class RouteHandler
         return $this->actionPath;
     }
 
+    /**
+     * @param AppController $app
+     *
+     * @return void
+     */
     private function getResponse($app)
     {
         switch ($this->getActionPath()) {
