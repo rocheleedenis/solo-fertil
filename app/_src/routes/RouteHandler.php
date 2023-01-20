@@ -6,15 +6,10 @@ class RouteHandler
     {
         $app = new AppController();
 
-        $acao = filter_input(INPUT_GET, 'a');
-        if($acao == null){
-            $acao = -1;
-        }else{
-            $acao = base64_decode($acao);
-        }
+        $actionPath = $this->getActionPath();
 
-        if(LoginController::verificaLogado()){
-            switch ($acao) {
+        if (LoginController::verificaLogado()) {
+            switch ($actionPath) {
             case RoutesMapping::INTERPRETACAORESULT:
                 $app->interpretacaoResult();
                 break;
@@ -129,9 +124,9 @@ class RouteHandler
                 }
                 break;
             }
-        }elseif($acao == 2){
+        }elseif($actionPath == 2){
             $app->logar();
-        }elseif($acao == 5){
+        }elseif($actionPath == 5){
             $app->cadastrarUser();
         }else{
             if(!LoginController::verificaLogado()){
@@ -140,4 +135,17 @@ class RouteHandler
         }
     }
 
+    /**
+     * @return int
+     */
+    private function getActionPath()
+    {
+        $actionPath = filter_input(INPUT_GET, 'a');
+
+        if ($actionPath == null) {
+            return RoutesMapping::HOME;
+        }
+
+        return base64_decode($actionPath);
+    }
 }
