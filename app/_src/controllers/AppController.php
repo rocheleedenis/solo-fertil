@@ -21,13 +21,10 @@ class AppController {
 		ViewApp::inicio();
 	}
 
-	public function home(){
+	public static function home(){
 		ViewAnalise::home();
 	}
 
-	public function formLogin(){
-		ViewUsuario::formLogin();
-	}
 	// opicional
 	public function preencherAnalise(){
         if( ( ($_POST['nPrem'] != '') && ($_POST['nPrem'] > 0) ) || ( ($_POST['nArgila'] != '') && ($_POST['nArgila'] > 0) ) ){
@@ -50,39 +47,6 @@ class AppController {
         }else{
             ViewApp::mensagem('Você precisa preencher ao menos um destes dois campos: "Arg" e "P-rem".', "Memorizar análise", 4);
         }
-	}
-
-	public function cadastrarUser(){
-        if((strlen(filter_input(INPUT_POST, 'nSenha')) >= 6) && (strlen(filter_input(INPUT_POST, 'nSenha')) <= 10)){
-            $usuario = new Usuario(
-                null,
-                filter_input(INPUT_POST, 'nNome'),
-                filter_input(INPUT_POST, 'nEmail'),
-                sha1(filter_input(INPUT_POST, 'nSenha'))
-            );
-            $x = $usuario->insert();
-            if($x > 0){
-                LoginController::iniciarSessao();
-                ViewAnalise::home();
-            }else{
-                ViewApp::mensagem('Não foi possível cadastrar usuário.', "Cadastrar usuário", 4);
-            }
-        }else{
-            ViewApp::mensagem('<p>Não foi possível cadastrar usuário.<p><p>Senha muito grande ou muito curta.</p>', "Cadastrar usuário", 4);
-        }
-	}
-
-	public function logar(){
-		if(LoginController::iniciarSessao()){
-    		self::home();
-	    }else{
-	    	ViewApp::loginIncorreto();
-	    }
-	}
-
-	public function sair(){
-		LoginController::terminaSessao();
-		self::inicio();
 	}
 
 	public function interpretacaoResult(){

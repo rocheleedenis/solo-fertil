@@ -14,11 +14,11 @@ class RouteHandler
         }
 
         if ($this->getActionPath() == RoutesMapping::LOGIN) {
-            return $app->logar();
+            return LoginController::logar();
         }
 
         if ($this->getActionPath() == RoutesMapping::CADASTRARUSER) {
-            return $app->cadastrarUser();
+            return LoginController::cadastrarUser();
         }
 
         return $app->inicio();
@@ -117,11 +117,11 @@ class RouteHandler
             case RoutesMapping::HOME:
                 return $app->home();
             case RoutesMapping::FORMLOGIN:
-                return $app->formLogin();
+                return LoginController::formLogin();
             case RoutesMapping::LOGIN:
-                return $app->logar();
+                return LoginController::logar();
             case RoutesMapping::LOGOFF:
-                return $app->sair();
+                return LoginController::sair();
             case RoutesMapping::CADASTRARUSER:
                 return $app->cadastrarUser();
             default:
