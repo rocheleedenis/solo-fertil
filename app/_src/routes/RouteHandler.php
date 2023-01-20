@@ -1,5 +1,7 @@
 <?php
 
+require_once '../Helpers/UserHelper.php';
+
 class RouteHandler
 {
     private $actionPath;
@@ -7,7 +9,7 @@ class RouteHandler
     {
         $app = new AppController();
 
-        if (LoginController::verificaLogado()) {
+        if (UserHelper::isLoggedIn()) {
             return $this->getResponse($app);
         }
 

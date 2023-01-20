@@ -5,18 +5,6 @@ class LoginController
     /**
      * @return bool
      */
-    public static function verificaLogado()
-    {
-        if (!isset($_SESSION)) {
-            session_start();
-        }
-
-        return isset($_SESSION['sf']['userId']);
-    }
-
-    /**
-     * @return bool
-     */
     public static function iniciarSessao()
     {
         $request = $_POST;
