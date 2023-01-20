@@ -15,7 +15,7 @@ class SoilChemicalAnalysisDao extends SpecialAnalise
 		$query = "select a.id, a.data, a.local, p.fazenda, p.nome from analise as a join produtor as p on p.id = a.idProdutor and a.idUsuario = :idU";
 
 		try {
-			$pdo = self::prepareQuery($query);
+			$pdo = Connection::prepareQuery($query);
 
 			$pdo->bindParam(":idU", $idU, PDO::PARAM_INT);
 
@@ -37,7 +37,7 @@ class SoilChemicalAnalysisDao extends SpecialAnalise
 		$query = "select a.*, p.nome, p.fazenda from analise as a join produtor as p on p.id = a.idProdutor and a.id = :id";
 
 		try {
-			$pdo = self::prepareQuery($query);
+			$pdo = Connection::prepareQuery($query);
 
 			$pdo->bindParam(":id", $id, PDO::PARAM_INT);
 
@@ -132,7 +132,7 @@ class SoilChemicalAnalysisDao extends SpecialAnalise
 		$query = "update analise set data=:data, local=:local, profundidade=:profundidade, pH=:pH, fosforo=:fosforo, potassio=:potassio, calcio=:calcio, magnesio=:magnesio, aluminio=:aluminio, somaBases=:somaBases, acidezPotencial=:acidezPotencial, matOrganica=:matOrganica, teorArgila=:teorArgila, prem=:prem, idProdutor=:idProdutor where id=:id";
 
 		try {
-			$pdo = self::prepareQuery($query);
+			$pdo = Connection::prepareQuery($query);
 
 			$pdo->bindValue(':id', $this->getId(), PDO::PARAM_INT);
 			$pdo->bindValue(':data', $this->getData(), PDO::PARAM_STR);
@@ -169,7 +169,7 @@ class SoilChemicalAnalysisDao extends SpecialAnalise
 		$query = "delete from analise where id = :id";
 
 		try {
-			$pdo = self::prepareQuery($query);
+			$pdo = Connection::prepareQuery($query);
 
 			$pdo->bindParam(':id', $id, PDO::PARAM_INT);
 
@@ -179,17 +179,5 @@ class SoilChemicalAnalysisDao extends SpecialAnalise
 		} catch (PDOException $e) {
 			throw new \Exception(Translator::get('exceptions.query_execution.delete'), 500);
 		}
-	}
-
-	/**
-	 * @param string $query
-	 *
-	 * @return PDOStatement
-	 */
-	private function prepareQuery($query)
-	{
-		$connection = Connection::connect();
-
-		return $connection->prepare($query);
 	}
 }

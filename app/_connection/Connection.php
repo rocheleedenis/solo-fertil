@@ -20,6 +20,18 @@ class Connection
 	}
 
 	/**
+	 * @param string $query
+	 *
+	 * @return PDOStatement
+	 */
+	public static function prepareQuery($query)
+	{
+		$connection = self::connect();
+
+		return $connection->prepare($query);
+	}
+
+	/**
 	 * @return PDO
 	 */
 	private static function createConnection()

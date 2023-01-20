@@ -16,7 +16,7 @@ class FarmProductionDao extends SpecialProducao
 		$query = 'select producao.id, producao.idCultura, producao.`data`, cultura.nome as c_nome, produtor.nome as pr_nome, produtor.fazenda from producao, cultura, produtor where produtor.id = :idP and cultura.id = :idC and cultura.id=producao.idCultura  and produtor.id=producao.idprodutor and `data` between :dataI and :dataF order by `data` asc';
 
 		try {
-			$pdo = self::prepareQuery($query);
+			$pdo = Connection::prepareQuery($query);
 
 			$pdo->bindParam(':idP', $data['nProdutor'], PDO::PARAM_INT);
 			$pdo->bindParam(':idC', $data['nCultura'], PDO::PARAM_INT);
@@ -39,8 +39,9 @@ class FarmProductionDao extends SpecialProducao
 	public static function selectProdutividade($data)
 	{
 		$query = 'select producao.*, cultura.nome as c_nome, produtor.nome as pr_nome, produtor.fazenda from producao, cultura, produtor where produtor.id = :idP and cultura.id = :idC and cultura.id=producao.idCultura  and produtor.id=producao.idprodutor order by `data` asc';
-		try{
-			$pdo = self::prepareQuery($query);
+
+		try {
+			$pdo = Connection::prepareQuery($query);
 
 			$pdo->bindParam(':idP', $data['nProdutor'], PDO::PARAM_INT);
 			$pdo->bindParam(':idC', $data['nCultura'], PDO::PARAM_INT);
@@ -62,8 +63,8 @@ class FarmProductionDao extends SpecialProducao
 	{
 		$query = 'select producao.*, produtor.nome as pt_nome, cultura.nome as c_nome, produtor.fazenda from producao join cultura join produtor on producao.id = :id and producao.idProdutor = produtor.id and cultura.id = producao.IdCultura';
 
-		try{
-			$pdo = self::prepareQuery($query);
+		try {
+			$pdo = Connection::prepareQuery($query);
 
 			$pdo->bindParam(':id', $id, PDO::PARAM_INT);
 
@@ -110,7 +111,7 @@ class FarmProductionDao extends SpecialProducao
 		$query = 'insert into producao values (default, :idUsuario, :idCultura, :data, :areaPlantada, :unidadeArea, :producao, :unidade, :precoVenda, :qtdVendida, :qtdAduboOrganico, :precoAduboOrganico, :gastosNPK, :qtdCalcario, :precoCalcario, :idProdutor)';
 
 		try {
-			$pdo = self::prepareQuery($query);
+			$pdo = Connection::prepareQuery($query);
 
 			$pdo->bindValue(':idCultura', $this->getIdCultura(), PDO::PARAM_INT);
 			$pdo->bindValue(':idUsuario', $this->getIdUsuario(), PDO::PARAM_INT);
@@ -143,8 +144,8 @@ class FarmProductionDao extends SpecialProducao
 	{
 		$query = 'update producao set idCultura=:idCultura, data=:data, areaPlantada=:areaPlantada, producao=:producao, unidade=:unidade, precoVenda=:precoVenda, qtdVendida=:qtdVendida, gastosNPK=:gastosNPK, qtdAduboOrganico=:qtdAduboOrganico, precoAduboOrganico=:precoAduboOrganico, qtdCalcario=:qtdCalcario, precoCalcario=:precoCalcario, idProdutor=:idProdutor where id=:id';
 
-		try{
-			$pdo = self::prepareQuery($query);
+		try {
+			$pdo = Connection::prepareQuery($query);
 
 			$pdo->bindValue(':id', $this->getId(), PDO::PARAM_INT);
 			$pdo->bindValue(':idCultura', $this->getIdCultura(), PDO::PARAM_INT);
@@ -179,7 +180,7 @@ class FarmProductionDao extends SpecialProducao
 		$query = 'delete from producao where id=:id';
 
 		try {
-			$pdo = self::prepareQuery($query);
+			$pdo = Connection::prepareQuery($query);
 
 			$pdo->bindParam(':id', $id, PDO::PARAM_INT);
 
@@ -189,17 +190,5 @@ class FarmProductionDao extends SpecialProducao
 		} catch (PDOException $e) {
 			throw new \Exception(Translator::get('exceptions.query_execution.delete'), 500);
 		}
-	}
-
-	/**
-	 * @param string $query
-	 *
-	 * @return PDOStatement
-	 */
-	private function prepareQuery($query)
-	{
-		$connection = Connection::connect();
-
-		return $connection->prepare($query);
 	}
 }

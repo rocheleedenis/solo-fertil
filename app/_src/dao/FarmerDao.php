@@ -16,7 +16,7 @@ class FarmerDao extends SpecialProdutor
         $query = 'select id, nome, fazenda from produtor where idUsuario = :id order by nome asc';
 
         try{
-            $pdo = self::prepareQuery($query);
+            $pdo = Connection::prepareQuery($query);
 
             $pdo->bindValue(':id', $id, PDO::PARAM_STR);
 
@@ -67,7 +67,7 @@ class FarmerDao extends SpecialProdutor
         $query = 'select id, nome, fazenda, logradouro, bairro, area, cidade, telefone, celular from produtor where id = :id';
 
         try {
-            $pdo = self::prepareQuery($query);
+            $pdo = Connection::prepareQuery($query);
 
             $pdo->bindValue(':id', $id, PDO::PARAM_INT);
 
@@ -99,7 +99,7 @@ class FarmerDao extends SpecialProdutor
         $query = 'update produtor set nome = :nome, fazenda=:fazenda, logradouro = :logradouro, bairro = :bairro, area = :area, cidade = :cidade, telefone = :telefone, celular = :celular where id = :id';
 
         try {
-            $pdo = self::prepareQuery($query);
+            $pdo = Connection::prepareQuery($query);
 
             $pdo->bindValue(':nome', $this->getNome(), PDO::PARAM_STR);
             $pdo->bindValue(':fazenda', $this->getFazenda(), PDO::PARAM_STR);
@@ -129,7 +129,7 @@ class FarmerDao extends SpecialProdutor
         $query = 'delete from produtor where id = :id';
 
         try {
-            $pdo = self::prepareQuery($query);
+            $pdo = Connection::prepareQuery($query);
 
             $pdo->bindValue(':id', $id, PDO::PARAM_INT);
 
@@ -140,16 +140,4 @@ class FarmerDao extends SpecialProdutor
             throw new \Exception(Translator::get('exceptions.query_execution.delete'), 500);
         }
     }
-
-    /**
-	 * @param string $query
-	 *
-	 * @return PDOStatement
-	 */
-	private function prepareQuery($query)
-	{
-		$connection = Connection::connect();
-
-		return $connection->prepare($query);
-	}
 }

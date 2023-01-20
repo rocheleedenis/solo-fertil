@@ -15,7 +15,7 @@ class CultivationDao extends SpecialCultura
 		$query = 'select id, nome, familia from cultura order by nome asc';
 
 		try {
-			$pdo = self::prepareQuery($query);
+			$pdo = Connection::prepareQuery($query);
 
 			$pdo->execute();
 
@@ -37,7 +37,7 @@ class CultivationDao extends SpecialCultura
 			cultura.id = adubacaoMineral.idCultura and familia <> (select familia from cultura where id = :id);';
 
 		try {
-			$pdo = self::prepareQuery($query);
+			$pdo = Connection::prepareQuery($query);
 
 			$pdo->bindParam(':id', $id, PDO::PARAM_INT);
 
@@ -51,12 +51,17 @@ class CultivationDao extends SpecialCultura
 		}
 	}
 
+	/**
+	 * @param int $id
+	 *
+	 * @return void
+	 */
 	public function selectOne($id)
 	{
 		$query = 'select * from cultura where id = :id';
 
-		try{
-			$pdo = self::prepareQuery($query);
+		try {
+			$pdo = Connection::prepareQuery($query);
 
 			$pdo->bindParam(':id', $id, PDO::PARAM_INT);
 
@@ -80,24 +85,12 @@ class CultivationDao extends SpecialCultura
 				$this->setAdubMineralTable(AdubacaoMineral::select($this->getId()));
 
 				$this->setParcNPKtable(ParcelamentoAdubNPK::select($this->getId()));
-			}else{
+			} else {
 				echo 'Não foi possivel recuperar dados. Verificar erro.';
 			}
-		}catch(PDOException $e){
+		} catch (PDOException $e) {
 			throw new \Exception(Translator::get('exceptions.query_execution.select'), 500);
 		}
-	}
-
-	/**
-	 * @param string $query
-	 *
-	 * @return PDOStatement
-	 */
-	private function prepareQuery($query)
-	{
-		$connection = Connection::connect();
-
-		return $connection->prepare($query);
 	}
 
 	/**

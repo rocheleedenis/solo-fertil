@@ -15,7 +15,7 @@ class NPKFertilizerInstallmentDao
 		$query = "select nutriente, ciclo, porcentagem from parcelamentoAdubNPK where idCultura = :id";
 
 		try {
-			$pdo = self::prepareQuery($query);
+			$pdo = Connection::prepareQuery($query);
 
 			$pdo->bindParam(":id", $idCultura, PDO::PARAM_INT);
 
@@ -23,17 +23,5 @@ class NPKFertilizerInstallmentDao
 		} catch (PDOException $e) {
 			throw new \Exception(Translator::get('exceptions.query_execution.select'), 500);
 		}
-	}
-
-	/**
-	 * @param string $query
-	 *
-	 * @return PDOStatement
-	 */
-	private function prepareQuery($query)
-	{
-		$connection = Connection::connect();
-
-		return $connection->prepare($query);
 	}
 }

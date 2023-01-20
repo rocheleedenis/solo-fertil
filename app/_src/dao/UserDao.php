@@ -16,7 +16,7 @@ class UserDao extends SpecialUsuario
 		$query = 'select id, nome, email from usuario where id = :id';
 
 		try {
-			$pdo = self::prepareQuery($query);
+			$pdo = Connection::prepareQuery($query);
 
 			$pdo->bindParam(':id', $id, PDO::PARAM_STR);
 
@@ -47,7 +47,7 @@ class UserDao extends SpecialUsuario
 		$query = 'select id, nome, senha, email from usuario where email = :email and senha = :senha';
 
 		try {
-			$pdo = self::prepareQuery($query);
+			$pdo = Connection::prepareQuery($query);
 
 			$pdo->bindParam(':email', $email, PDO::PARAM_STR);
 			$pdo->bindParam(':senha', $senha, PDO::PARAM_STR);
@@ -68,7 +68,7 @@ class UserDao extends SpecialUsuario
 		$query = 'insert into usuario values (default, :nome, :senha, :email)';
 
 		try {
-			$pdo = self::prepareQuery($query);
+			$pdo = Connection::prepareQuery($query);
 
 			$pdo->bindValue(':nome', $this->getNome(), PDO::PARAM_STR);
 			$pdo->bindValue(':senha', $this->getSenha(), PDO::PARAM_STR);
@@ -90,7 +90,7 @@ class UserDao extends SpecialUsuario
 		$query = 'update usuario set nome=:nome, email=:email, senha=:senha where id=:id';
 
 		try {
-			$pdo = self::prepareQuery($query);
+			$pdo = Connection::prepareQuery($query);
 
 			$pdo->bindValue(':id', $this->getId(), PDO::PARAM_INT);
 			$pdo->bindValue(':nome', $this->getNome(), PDO::PARAM_STR);
@@ -115,7 +115,7 @@ class UserDao extends SpecialUsuario
 		$query = 'delete from usuario where id = :id';
 
 		try {
-			$pdo = self::prepareQuery($query);
+			$pdo = Connection::prepareQuery($query);
 
 			$pdo->bindParam(':id', $id, PDO::PARAM_INT);
 
@@ -125,17 +125,5 @@ class UserDao extends SpecialUsuario
 		} catch (PDOException $e) {
 			throw new \Exception(Translator::get('exceptions.query_execution.delete'), 500);
 		}
-	}
-
-	/**
-	 * @param string $query
-	 *
-	 * @return PDOStatement
-	 */
-	private function prepareQuery($query)
-	{
-		$connection = Connection::connect();
-
-		return $connection->prepare($query);
 	}
 }
