@@ -2,14 +2,50 @@
 
 class RouteHandler
 {
+    private $actionPath;
+
     public function handleRouting()
     {
         $app = new AppController();
 
-        $actionPath = $this->getActionPath();
-
         if (LoginController::verificaLogado()) {
-            switch ($actionPath) {
+            return $this->getResponse($app);
+        }
+
+        if ($this->getActionPath() == RoutesMapping::LOGIN) {
+            return $app->logar();
+        }
+
+        if ($this->getActionPath() == RoutesMapping::CADASTRARUSER) {
+            return $app->cadastrarUser();
+        }
+
+        return $app->inicio();
+    }
+
+    /**
+     * @return int
+     */
+    private function getActionPath()
+    {
+        if ($this->actionPath) {
+            return $this->actionPath;
+        }
+
+        $hash = filter_input(INPUT_GET, 'a');
+
+        if (!$hash) {
+            $this->actionPath = RoutesMapping::HOME;
+        }
+
+        $this->actionPath = base64_decode($hash);
+
+        return $this->actionPath;
+    }
+
+    private function getResponse($app)
+    {
+        switch ($this->getActionPath()) {
             case RoutesMapping::INTERPRETACAORESULT:
                 $app->interpretacaoResult();
                 break;
@@ -123,29 +159,7 @@ class RouteHandler
                     $app->home();
                 }
                 break;
-            }
-        }elseif($actionPath == 2){
-            $app->logar();
-        }elseif($actionPath == 5){
-            $app->cadastrarUser();
-        }else{
-            if(!LoginController::verificaLogado()){
-                $app->inicio();
-            }
+
         }
-    }
-
-    /**
-     * @return int
-     */
-    private function getActionPath()
-    {
-        $actionPath = filter_input(INPUT_GET, 'a');
-
-        if ($actionPath == null) {
-            return RoutesMapping::HOME;
-        }
-
-        return base64_decode($actionPath);
     }
 }
