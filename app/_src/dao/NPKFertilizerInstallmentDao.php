@@ -3,7 +3,7 @@
 require_once '../../_connection/Connection.php';
 require_once '../lang/Translator.php';
 
-class NPKFertilizerInstallment
+class NPKFertilizerInstallmentDao
 {
 	/**
 	 * @param int $idCultura
