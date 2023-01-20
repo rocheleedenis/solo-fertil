@@ -1,39 +1,54 @@
 <?php
 
-class LoginController{
-
-    public static function verificaLogado(){
+class LoginController
+{
+    /**
+     * @return bool
+     */
+    public static function verificaLogado()
+    {
         if (!isset($_SESSION)) {
             session_start();
         }
-        if (isset($_SESSION['sf']['userId'])){
-            return true;
-        }else{
-            return false;
-        }
+
+        return isset($_SESSION['sf']['userId']);
     }
 
-    public static function iniciarSessao(){
-        $email = (isset($_POST['nEmail'])) ? $_POST['nEmail'] : '';
-        $senha = sha1((isset($_POST['nSenha'])) ? $_POST['nSenha'] : '');
-        $result = Usuario::selectLogin($email, $senha);
+    /**
+     * @return bool
+     */
+    public static function iniciarSessao()
+    {
+        $request = $_POST;
 
-        if (!empty($result)) {
-            if (!isset($_SESSION)){
-                session_start();
-            }
-            $_SESSION['sf']['userId'] = $result['id'];
-            $_SESSION['sf']['userNome'] = $result['nome'];;
-            return true;
-        }else{
+        $email = isset($request['nEmail']) ? $request['nEmail'] : '';
+        $password = sha1((isset($request['nSenha'])) ? $request['nSenha'] : '');
+
+        $user = Usuario::selectLogin($email, $password);
+
+        if (empty($user)) {
             return false;
         }
+
+        if (!isset($_SESSION)){
+            session_start();
+        }
+
+        $_SESSION['sf']['userId'] = $user['id'];
+        $_SESSION['sf']['userNome'] = $user['nome'];
+
+        return true;
     }
-    
-    public static function terminaSessao() {
+
+    /**
+     * @return void
+     */
+    public static function terminaSessao()
+    {
         if (!isset($_SESSION)) {
             session_start();
         }
+
         unset($_SESSION['sf']);
     }
 }
