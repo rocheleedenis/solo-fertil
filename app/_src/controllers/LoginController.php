@@ -20,7 +20,7 @@ class LoginController
      */
     public static function logar()
     {
-		LoginController::iniciarSessao()
+		Auth::login()
             ? AppController::home()
 	        : ViewApp::loginIncorreto();
 	}
@@ -56,7 +56,7 @@ class LoginController
             return;
         }
 
-        LoginController::iniciarSessao();
+        Auth::login();
         ViewAnalise::home();
 	}
 
@@ -67,30 +67,4 @@ class LoginController
     {
 		ViewUsuario::formLogin();
 	}
-
-    /**
-     * @return bool
-     */
-    public static function iniciarSessao()
-    {
-        $request = $_POST;
-
-        $email = isset($request['nEmail']) ? $request['nEmail'] : '';
-        $password = sha1((isset($request['nSenha'])) ? $request['nSenha'] : '');
-
-        $user = Usuario::selectLogin($email, $password);
-
-        if (empty($user)) {
-            return false;
-        }
-
-        if (!isset($_SESSION)){
-            session_start();
-        }
-
-        $_SESSION['sf']['userId'] = $user['id'];
-        $_SESSION['sf']['userNome'] = $user['nome'];
-
-        return true;
-    }
 }
