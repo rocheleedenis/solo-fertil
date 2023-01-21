@@ -1,5 +1,11 @@
 # SoloFértil
 
+---
+
+Esta branch foi criada para realização de melhorias no código do projeto para melhor manutenção e legibilidade. Não adiciona novas funcionalidades ou corrige qualquer bug no cálculo das recomendações.
+
+---
+
 Projeto desenvolvido em 2017 como parte do meu [TCC (Trabalho de Conclusão de Curso)](https://www.sje.ifmg.edu.br/portal/images/artigos/biblioteca/TCCs/Sistemas_de_informacao/2017/KENIA_ALVES_PEREIRA_ARAUJO_ROCHELE_EDENIS_MIRANDA.pdf) apresentado ao Instituto Federal de Minas Gerais – Campus São João Evangelista, como exigência parcial para obtenção do título de Bacharel em Sistemas de Informação.
 
 Recomende adubos e corretivos e realize sugestão de sucessão de culturas considerando as necessidades de nutrientes apresentadas pelas culturas e as condições de solo que podem ser obtidas através de uma análise de solo.
