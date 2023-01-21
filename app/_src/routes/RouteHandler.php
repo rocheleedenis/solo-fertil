@@ -11,6 +11,7 @@ require_once '../controllers/SoilChemicalAnalysisController.php';
 require_once '../controllers/SoilChemicalAnalysisInterpretationController.php';
 require_once '../controllers/CultivationSuggestionController.php';
 require_once '../controllers/HomeController.php';
+require_once '../controllers/FertilizerSugestionController.php';
 
 class RouteHandler
 {
@@ -68,9 +69,9 @@ class RouteHandler
             case RoutesMapping::INTERPRETACAORESULT:
                 return SoilChemicalAnalysisInterpretationController::show();
             case RoutesMapping::SUGERIRADUBACAO:
-                return $app->formAdubacao();
+                return FertilizerSugestionController::create();
             case RoutesMapping::SUGERIRADUBACAORESULT:
-                return $app->sugerirAdubacao();
+                return FertilizerSugestionController::show();
             case RoutesMapping::SUGERIRCULTURA:
                 return CultivationSuggestionController::index();
             case RoutesMapping::SUGERIRCULTURARESULT:
