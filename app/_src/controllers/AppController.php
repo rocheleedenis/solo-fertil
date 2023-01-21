@@ -257,21 +257,6 @@ class AppController {
             }
         }
     }
-
-    public function formProdutividade(){
-        $produtores = Produtor::selectAll($_SESSION['sf']['userId']);
-        $culturas = Cultura::selectAll();
-        ViewProducao::formProdutividade($culturas, $produtores);
-    }
-
-    public function produtividade(){
-        $producoes = Producao::selectProdutividade($_POST);
-        if(empty($producoes)){
-            ViewApp::mensagem("Nenhuma produção encontrada.", "Gráficos da produtividade", 3);
-        }else{
-            ViewProducao::produtividade($producoes);
-        }
-    }
 }
 
 $handler = new RouteHandler();

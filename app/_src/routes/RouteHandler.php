@@ -6,6 +6,7 @@ require_once '../controllers/HelpController.php';
 require_once '../controllers/FarmerController.php';
 require_once '../controllers/FarmProductionController.php';
 require_once '../controllers/CultivationController.php';
+require_once '../controllers/PlantingProductivityController.php';
 
 class RouteHandler
 {
@@ -108,9 +109,9 @@ class RouteHandler
             case RoutesMapping::SALVARPRODUCAO:
                 return FarmProductionController::update();
             case RoutesMapping::FORMPRODUTIVIDADE:
-                return $app->formProdutividade();
+                return PlantingProductivityController::index();
             case RoutesMapping::PRODUTIVIDADE:
-                return $app->produtividade();
+                return PlantingProductivityController::show();
             case RoutesMapping::CONSULTARUSUARIO:
                 return UserController::show();
             case RoutesMapping::EDITARUSUARIO:
