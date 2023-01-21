@@ -4,6 +4,7 @@ require_once '../Helpers/Auth.php';
 require_once '../controllers/UserController.php';
 require_once '../controllers/HelpController.php';
 require_once '../controllers/FarmerController.php';
+require_once '../controllers/FarmProductionController.php';
 
 class RouteHandler
 {
@@ -94,17 +95,17 @@ class RouteHandler
             case RoutesMapping::SALVARPRODUTOR:
                 return FarmerController::update();
             case RoutesMapping::FORMCADASTRARPRODUCAO:
-                return $app->formCadastroProducao();
+                return FarmProductionController::create();
             case RoutesMapping::CADASTRARPRODUCAO:
-                return $app->cadastrarProducao();
+                return FarmProductionController::store();
             case RoutesMapping::SELECIONARPRODUCAO:
-                return $app->selecionarProducao();
+                return FarmProductionController::index();
             case RoutesMapping::CONSULTARPRODUCAO:
-                return $app->consultarProducao();
+                return FarmProductionController::show();
             case RoutesMapping::EDITARPRODUCAO:
-                return $app->editarProducao();
+                return FarmProductionController::edit();
             case RoutesMapping::SALVARPRODUCAO:
-                return $app->salvarProducao();
+                return FarmProductionController::update();
             case RoutesMapping::FORMPRODUTIVIDADE:
                 return $app->formProdutividade();
             case RoutesMapping::PRODUTIVIDADE:
