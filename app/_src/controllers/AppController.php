@@ -466,15 +466,6 @@ class AppController {
         }
     }
 
-    public function salvarUsuario(){
-        $usuario = new Usuario($_SESSION['sf']['userId'], filter_input(INPUT_POST, 'nNome'), filter_input(INPUT_POST, 'nEmail'), sha1(filter_input(INPUT_POST, 'nSenha')));
-        if ($usuario->update()) {
-            ViewApp::mensagem("Dados alterados com sucesso!", "Editar conta", 1);
-        }else{
-            ViewApp::mensagem("Não foi possível alterar os dados.", "Editar conta", 4);
-        }
-    }
-
     public function ajuda(){
         ViewApp::ajudaUsuario();
     }

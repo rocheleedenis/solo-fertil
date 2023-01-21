@@ -6,6 +6,9 @@ class UserController
     const MAXIMUM_PASSWORD_LENGTH = 10;
     CONST MINIMUM_PASSWORD_LENGTH = 6;
 
+    /**
+     * @return void
+     */
     public static function show()
     {
         $usuario = new Usuario();
@@ -50,6 +53,9 @@ class UserController
         ViewAnalise::home();
 	}
 
+    /**
+     * @return void
+     */
     public static function edit()
     {
         if (isset($_POST['nEditar'])) {
@@ -65,6 +71,27 @@ class UserController
             } else {
                 ViewApp::mensagem("Não foi possível excluir conta.", "Excluir conta", 4);
             }
+        }
+    }
+
+    /**
+     * @return void
+     */
+    public static function update()
+    {
+        $request = $_POST;
+
+        $usuario = new Usuario(
+            $_SESSION['sf']['userId'],
+            $request['nNome'],
+            $request['nEmail'],
+            sha1($request['nSenha'])
+        );
+
+        if ($usuario->update()) {
+            ViewApp::mensagem("Dados alterados com sucesso!", "Editar conta", 1);
+        } else {
+            ViewApp::mensagem("Não foi possível alterar os dados.", "Editar conta", 4);
         }
     }
 }
