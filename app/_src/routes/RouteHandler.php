@@ -3,6 +3,7 @@
 require_once '../Helpers/Auth.php';
 require_once '../controllers/UserController.php';
 require_once '../controllers/HelpController.php';
+require_once '../controllers/FarmerController.php';
 
 class RouteHandler
 {
@@ -83,15 +84,15 @@ class RouteHandler
             case RoutesMapping::SALVARANALISE:
                 return $app->salvarAnalise();
             case RoutesMapping::FORMCADASTRARPRODUTOR:
-                return $app->formCadastroProdutor();
+                return FarmerController::create();
             case RoutesMapping::CADASTRARPRODUTOR:
-                return $app->cadastrarProdutor();
+                return FarmerController::store();
             case RoutesMapping::SELECIONARPRODUTOR:
-                return $app->selecionarProdutor();
+                return FarmerController::index();
             case RoutesMapping::EDITARPRODUTOR:
-                return $app->editarProdutor();
+                return FarmerController::edit();
             case RoutesMapping::SALVARPRODUTOR:
-                return $app->salvarProdutor();
+                return FarmerController::update();
             case RoutesMapping::FORMCADASTRARPRODUCAO:
                 return $app->formCadastroProducao();
             case RoutesMapping::CADASTRARPRODUCAO:
