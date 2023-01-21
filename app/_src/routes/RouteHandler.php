@@ -1,6 +1,6 @@
 <?php
 
-require_once '../Helpers/UserHelper.php';
+require_once '../Helpers/Auth.php';
 
 class RouteHandler
 {
@@ -9,7 +9,7 @@ class RouteHandler
     {
         $app = new AppController();
 
-        if (UserHelper::isLoggedIn()) {
+        if (Auth::isLoggedIn()) {
             return $this->getResponse($app);
         }
 

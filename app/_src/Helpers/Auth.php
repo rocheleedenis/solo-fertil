@@ -1,6 +1,6 @@
 <?php
 
-class UserHelper
+class Auth
 {
     /**
      * @return boolean
