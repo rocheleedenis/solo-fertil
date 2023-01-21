@@ -8,10 +8,12 @@ require_once '../controllers/FarmProductionController.php';
 require_once '../controllers/CultivationController.php';
 require_once '../controllers/PlantingProductivityController.php';
 require_once '../controllers/SoilChemicalAnalysisController.php';
+require_once '../controllers/SoilChemicalAnalysisInterpretationController.php';
 
 class RouteHandler
 {
     private $actionPath;
+
     public function handleRouting()
     {
         $app = new AppController();
@@ -62,7 +64,7 @@ class RouteHandler
     {
         switch ($this->getActionPath()) {
             case RoutesMapping::INTERPRETACAORESULT:
-                return $app->interpretacaoResult();
+                return SoilChemicalAnalysisInterpretationController::show();
             case RoutesMapping::SUGERIRADUBACAO:
                 return $app->formAdubacao();
             case RoutesMapping::SUGERIRADUBACAORESULT:
