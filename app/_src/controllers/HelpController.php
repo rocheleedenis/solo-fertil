@@ -5,7 +5,7 @@ class HelpController
     /**
      * @return void
      */
-    public function show()
+    public static function show()
     {
         ViewApp::ajudaUsuario();
     }

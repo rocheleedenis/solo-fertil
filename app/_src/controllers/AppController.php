@@ -17,10 +17,6 @@ require_once '../routes/RoutesMapping.php';
 require_once '../routes/RouteHandler.php';
 
 class AppController {
-	public static function inicio(){
-		ViewApp::inicio();
-	}
-
 	public static function home(){
 		ViewAnalise::home();
 	}

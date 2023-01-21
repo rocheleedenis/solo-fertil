@@ -10,6 +10,7 @@ require_once '../controllers/PlantingProductivityController.php';
 require_once '../controllers/SoilChemicalAnalysisController.php';
 require_once '../controllers/SoilChemicalAnalysisInterpretationController.php';
 require_once '../controllers/CultivationSuggestionController.php';
+require_once '../controllers/HomeController.php';
 
 class RouteHandler
 {
@@ -31,7 +32,7 @@ class RouteHandler
             return UserController::store();
         }
 
-        return $app->inicio();
+        return HomeController::index();
     }
 
     /**

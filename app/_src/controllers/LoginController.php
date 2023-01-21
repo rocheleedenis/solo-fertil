@@ -8,7 +8,7 @@ class LoginController
     public static function sair()
     {
 		Auth::logout();
-		AppController::inicio();
+		ViewApp::inicio();
 	}
 
     /**
@@ -17,7 +17,7 @@ class LoginController
     public static function logar()
     {
 		Auth::login()
-            ? AppController::home()
+            ? ViewAnalise::home()
 	        : ViewApp::loginIncorreto();
 	}
 
