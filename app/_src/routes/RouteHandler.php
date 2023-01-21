@@ -12,6 +12,7 @@ require_once '../controllers/SoilChemicalAnalysisInterpretationController.php';
 require_once '../controllers/CultivationSuggestionController.php';
 require_once '../controllers/HomeController.php';
 require_once '../controllers/FertilizerSugestionController.php';
+require_once '../controllers/AnalisysMemorizationController.php';
 
 class RouteHandler
 {
@@ -19,10 +20,8 @@ class RouteHandler
 
     public function handleRouting()
     {
-        $app = new AppController();
-
         if (Auth::isLoggedIn()) {
-            return $this->getResponse($app);
+            return $this->getResponse();
         }
 
         if ($this->getActionPath() == RoutesMapping::LOGIN) {
@@ -59,11 +58,9 @@ class RouteHandler
     }
 
     /**
-     * @param AppController $app
-     *
      * @return void
      */
-    private function getResponse($app)
+    private function getResponse()
     {
         switch ($this->getActionPath()) {
             case RoutesMapping::INTERPRETACAORESULT:
@@ -76,8 +73,6 @@ class RouteHandler
                 return CultivationSuggestionController::index();
             case RoutesMapping::SUGERIRCULTURARESULT:
                 return CultivationSuggestionController::show();
-            case RoutesMapping::PREENCHERANALISE:
-                return $app->preencherAnalise();
             case RoutesMapping::INFORMACOES:
                 return CultivationController::index();
             case RoutesMapping::INFORMACOESRESULT:
@@ -127,7 +122,9 @@ class RouteHandler
             case RoutesMapping::AJUDA:
                 return HelpController::show();
             case RoutesMapping::HOME:
-                return $app->home();
+                return AnalisysMemorizationController::create();
+            case RoutesMapping::PREENCHERANALISE:
+                return AnalisysMemorizationController::show();
             case RoutesMapping::FORMLOGIN:
                 return LoginController::formLogin();
             case RoutesMapping::LOGIN:

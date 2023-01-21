@@ -5,7 +5,7 @@ class FertilizerSugestionController
     /**
      * @return void
      */
-    public function create()
+    public static function create()
     {
 		if (!isset($_SESSION['sf']['analise'])) {
             ViewApp::mensagem("Você precisa memorizar alguma análise primeiro!", "Sugestão de adubação", 3);
@@ -22,7 +22,7 @@ class FertilizerSugestionController
     /**
      * @return void
      */
-	public function show()
+	public static function show()
     {
         $pdf = (filter_input(INPUT_GET, 'p') == 1);
 		$analise = unserialize($_SESSION['sf']['analise']);
