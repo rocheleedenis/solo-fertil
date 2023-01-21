@@ -466,21 +466,6 @@ class AppController {
         }
     }
 
-    public function editarUsuario(){
-        if(isset($_POST['nEditar'])){
-            $usuario = new Usuario();
-            $usuario->selectOne($_SESSION['sf']['userId']);
-            ViewUsuario::editar($usuario);
-        }elseif((filter_input(INPUT_GET, 'e') == 1) || (isset($_POST['nExcluir']))){
-            if(Usuario::delete($_SESSION['sf']['userId'])) {
-                ViewApp::inicio();
-                Auth::logout();
-            }else{
-                ViewApp::mensagem("Não foi possível excluir conta.", "Excluir conta", 4);
-            }
-        }
-    }
-
     public function salvarUsuario(){
         $usuario = new Usuario($_SESSION['sf']['userId'], filter_input(INPUT_POST, 'nNome'), filter_input(INPUT_POST, 'nEmail'), sha1(filter_input(INPUT_POST, 'nSenha')));
         if ($usuario->update()) {

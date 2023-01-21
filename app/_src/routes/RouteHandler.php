@@ -110,7 +110,7 @@ class RouteHandler
             case RoutesMapping::CONSULTARUSUARIO:
                 return UserController::show();
             case RoutesMapping::EDITARUSUARIO:
-                return $app->editarUsuario();
+                return UserController::edit();
             case RoutesMapping::SALVARUSUARIO:
                 return $app->salvarUsuario();
             case RoutesMapping::AJUDA:
