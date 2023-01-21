@@ -5,6 +5,7 @@ require_once '../controllers/UserController.php';
 require_once '../controllers/HelpController.php';
 require_once '../controllers/FarmerController.php';
 require_once '../controllers/FarmProductionController.php';
+require_once '../controllers/CultivationController.php';
 
 class RouteHandler
 {
@@ -71,9 +72,9 @@ class RouteHandler
             case RoutesMapping::PREENCHERANALISE:
                 return $app->preencherAnalise();
             case RoutesMapping::INFORMACOES:
-                return $app->formSelecionarInfo();
+                return CultivationController::index();
             case RoutesMapping::INFORMACOESRESULT:
-                return $app->infoCultura();
+                return CultivationController::show();
             case RoutesMapping::FORMCADASTROANALISE:
                 return $app->formCadastroAnalise();
             case RoutesMapping::CADASTRARANALISE:

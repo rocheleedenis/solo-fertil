@@ -129,23 +129,6 @@ class AppController {
         ViewCultura::sugerirCultura($r, $pdf, $info);
     }
 
-    public function formSelecionarInfo(){
-    	$culturas = Cultura::selectAll();
-    	ViewCultura::formSelecionarInfo($culturas);
-    }
-
-	public function infoCultura(){
-        $pdf = filter_input(INPUT_GET, 'p');
-        if(!$pdf){
-        	$cultura = new Cultura();
-        	$cultura->selectOne(filter_input(INPUT_GET, 'id'));
-            $_SESSION['sf']['cultura'] = serialize($cultura);
-        }else{
-        	$cultura = unserialize($_SESSION['sf']['cultura']);
-        }
-        ViewCultura::infoCultura($cultura, $pdf);
-    }
-
     public function formCadastroAnalise(){
     	if (isset($_SESSION['sf']['analise'])){
     		$analise = unserialize($_SESSION['sf']['analise']);
