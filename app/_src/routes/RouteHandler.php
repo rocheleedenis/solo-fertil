@@ -1,6 +1,7 @@
 <?php
 
 require_once '../Helpers/Auth.php';
+require_once '../controllers/UserController.php';
 
 class RouteHandler
 {
@@ -18,7 +19,7 @@ class RouteHandler
         }
 
         if ($this->getActionPath() == RoutesMapping::CADASTRARUSER) {
-            return LoginController::cadastrarUser();
+            return UserController::store();
         }
 
         return $app->inicio();
@@ -123,7 +124,7 @@ class RouteHandler
             case RoutesMapping::LOGOFF:
                 return LoginController::sair();
             case RoutesMapping::CADASTRARUSER:
-                return $app->cadastrarUser();
+                return UserController::store();
             default:
                 echo '<h2>Opss... Página não encontrada.</h2>';
         }
