@@ -9,6 +9,7 @@ require_once '../controllers/CultivationController.php';
 require_once '../controllers/PlantingProductivityController.php';
 require_once '../controllers/SoilChemicalAnalysisController.php';
 require_once '../controllers/SoilChemicalAnalysisInterpretationController.php';
+require_once '../controllers/CultivationSuggestionController.php';
 
 class RouteHandler
 {
@@ -70,9 +71,9 @@ class RouteHandler
             case RoutesMapping::SUGERIRADUBACAORESULT:
                 return $app->sugerirAdubacao();
             case RoutesMapping::SUGERIRCULTURA:
-                return $app->formSugestaoCultura();
+                return CultivationSuggestionController::index();
             case RoutesMapping::SUGERIRCULTURARESULT:
-                return $app->sugerirCultura();
+                return CultivationSuggestionController::show();
             case RoutesMapping::PREENCHERANALISE:
                 return $app->preencherAnalise();
             case RoutesMapping::INFORMACOES:
