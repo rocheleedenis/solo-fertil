@@ -480,7 +480,7 @@ class AppController {
         }elseif((filter_input(INPUT_GET, 'e') == 1) || (isset($_POST['nExcluir']))){
             if(Usuario::delete($_SESSION['sf']['userId'])) {
                 ViewApp::inicio();
-                LoginController::terminaSessao();
+                Auth::logout();
             }else{
                 ViewApp::mensagem("Não foi possível excluir conta.", "Excluir conta", 4);
             }

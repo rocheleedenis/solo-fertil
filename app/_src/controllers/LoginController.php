@@ -11,7 +11,7 @@ class LoginController
      */
     public static function sair()
     {
-		LoginController::terminaSessao();
+		Auth::logout();
 		AppController::inicio();
 	}
 
@@ -92,17 +92,5 @@ class LoginController
         $_SESSION['sf']['userNome'] = $user['nome'];
 
         return true;
-    }
-
-    /**
-     * @return void
-     */
-    public static function terminaSessao()
-    {
-        if (!isset($_SESSION)) {
-            session_start();
-        }
-
-        unset($_SESSION['sf']);
     }
 }

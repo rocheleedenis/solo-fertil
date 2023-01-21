@@ -13,4 +13,16 @@ class Auth
 
         return isset($_SESSION['sf']['userId']);
     }
+
+    /**
+     * @return void
+     */
+    public static function logout()
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+
+        unset($_SESSION['sf']);
+    }
 }
