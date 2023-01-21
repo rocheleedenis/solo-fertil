@@ -465,10 +465,6 @@ class AppController {
             ViewProducao::produtividade($producoes);
         }
     }
-
-    public function ajuda(){
-        ViewApp::ajudaUsuario();
-    }
 }
 
 $handler = new RouteHandler();

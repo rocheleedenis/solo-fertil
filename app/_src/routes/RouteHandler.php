@@ -2,6 +2,7 @@
 
 require_once '../Helpers/Auth.php';
 require_once '../controllers/UserController.php';
+require_once '../controllers/HelpController.php';
 
 class RouteHandler
 {
@@ -114,7 +115,7 @@ class RouteHandler
             case RoutesMapping::SALVARUSUARIO:
                 return UserController::update();
             case RoutesMapping::AJUDA:
-                return $app->ajuda();
+                return HelpController::show();
             case RoutesMapping::HOME:
                 return $app->home();
             case RoutesMapping::FORMLOGIN:
