@@ -466,12 +466,6 @@ class AppController {
         }
     }
 
-    public function consultarUsuario(){
-        $usuario = new Usuario();
-        $usuario->selectOne($_SESSION['sf']['userId']);
-        ViewUsuario::consultar($usuario);
-    }
-
     public function editarUsuario(){
         if(isset($_POST['nEditar'])){
             $usuario = new Usuario();

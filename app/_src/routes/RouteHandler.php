@@ -108,7 +108,7 @@ class RouteHandler
             case RoutesMapping::PRODUTIVIDADE:
                 return $app->produtividade();
             case RoutesMapping::CONSULTARUSUARIO:
-                return $app->consultarUsuario();
+                return UserController::show();
             case RoutesMapping::EDITARUSUARIO:
                 return $app->editarUsuario();
             case RoutesMapping::SALVARUSUARIO:
