@@ -7,6 +7,7 @@ require_once '../controllers/FarmerController.php';
 require_once '../controllers/FarmProductionController.php';
 require_once '../controllers/CultivationController.php';
 require_once '../controllers/PlantingProductivityController.php';
+require_once '../controllers/SoilChemicalAnalysisController.php';
 
 class RouteHandler
 {
@@ -77,15 +78,15 @@ class RouteHandler
             case RoutesMapping::INFORMACOESRESULT:
                 return CultivationController::show();
             case RoutesMapping::FORMCADASTROANALISE:
-                return $app->formCadastroAnalise();
+                return SoilChemicalAnalysisController::create();
             case RoutesMapping::CADASTRARANALISE:
-                return $app->cadastrarAnalise();
+                return SoilChemicalAnalysisController::store();
             case RoutesMapping::SELECIONARANALISE:
-                return $app->selecionarAnalise();
+                return SoilChemicalAnalysisController::index();
             case RoutesMapping::EDITARANALISE:
-                return $app->editarAnalise();
+                return SoilChemicalAnalysisController::edit();
             case RoutesMapping::SALVARANALISE:
-                return $app->salvarAnalise();
+                return SoilChemicalAnalysisController::update();
             case RoutesMapping::FORMCADASTRARPRODUTOR:
                 return FarmerController::create();
             case RoutesMapping::CADASTRARPRODUTOR:
