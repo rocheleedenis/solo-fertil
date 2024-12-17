@@ -1,0 +1,43 @@
+services:
+  solo-fertil:
+    build:
+      context: .
+    container_name: solo-fertil
+    networks:
+      - solo-fertil-network
+    tty: true
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "8080:80"
+      - "443:443"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  mysql:
+    image: mysql:5.7
+    command: --innodb-use-native-aio=0
+    container_name: mysql-solo-fertil
+    restart: always
+    tty: true
+    volumes:
+      - ./.docker/mysql:/var/lib/mysql
+      - ./_config/soloFertil.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - MYSQL_DATABASE=solo-fertil
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
+    networks:
+      - solo-fertil-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+networks:
+  solo-fertil-network:
+    driver: bridge

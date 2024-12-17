@@ -6,13 +6,11 @@ Recomende adubos e corretivos e realize sugestão de sucessão de culturas consi
 
 O sistema construído realiza a interpretação de análise, gerando uma classificação de cada um de seus elementos e também realiza o cálculo da calagem, com a finalidade de prover a sugestão de correção de solo para regularizar seus níveis de acidez.
 
-## Requisitos
-
-- PHP 5.6
-- MariaDB versão 10.1.22 ou superior
-
 ## Instalação
 
-- Crie um banco de dados vazio.
-- Dentro da pasta _config existe o arquivo soloFertil.sql. Execute-o em para gerar as tabelas do sistema.
-- Ainda dentro desta pasta você encontrará o arquivo db.ini. Altere as credenciais do banco de dados de acordo com o seu ambiente.
+- Rode `docker-compose up -d`;
+- Acesse no seu navegador [http://localhost:8080/](http://localhost:8080/).
+
+Pronto! É isso. O banco de dados será automaticamente gerado e alimentado com os dados padrão do projeto.
+
+Você pode criar um novo usuário ou usar o login padrão `rochele.edenis@gmail.com` e senha `123456`.
