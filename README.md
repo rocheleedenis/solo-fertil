@@ -9,5 +9,8 @@ O sistema construído realiza a interpretação de análise, gerando uma classif
 ## Instalação
 
 - Rode `docker-compose up -d`;
-- Abra o gerenciador de banco de dados de sua preferência, conecte-se ao container com o MySQL e crie um banco de dados chamado `solo-fertil`.
-- Dentro da pasta _config existe o arquivo `soloFertil.sql`. Execute-o para gerar as tabelas do sistema.
+- Acesse no seu navegador [http://localhost:8080/](http://localhost:8080/).
+
+Pronto! É isso. O banco de dados será automaticamente gerado e alimentado com os dados padrão do projeto.
+
+Você pode criar um novo usuário ou usar o login padrão `rochele.edenis@gmail.com` e senha `123456`.
