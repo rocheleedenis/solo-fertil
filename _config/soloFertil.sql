@@ -7,6 +7,10 @@
 -- Versão do servidor: 10.1.18-MariaDB
 -- Versão do PHP: 7.0.12
 
+-- init.sql
+CREATE DATABASE IF NOT EXISTS `solo-fertil`;
+USE `solo-fertil`;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
