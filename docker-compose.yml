@@ -19,7 +19,7 @@ services:
     image: mysql:5.7
     command: --innodb-use-native-aio=0
     container_name: mysql-solo-fertil
-    restart: always
+    restart: on-failure
     tty: true
     volumes:
       - ./.docker/mysql:/var/lib/mysql
